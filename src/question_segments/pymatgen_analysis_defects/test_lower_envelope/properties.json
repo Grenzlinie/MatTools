@@ -1,0 +1,15 @@
+{
+    "JSON_File_Name": "test_lower_envelope",
+    "properties": {
+        "lower_envelope": {
+            "description": "The lower envelope of a set of lines, representing the minimal boundary formed by the lines in a 2D space.",
+            "format": "list of tuples",
+            "value": "[(4, 12), (3, 8), (-2, 1), (-5, 4)]"
+        },
+        "transitions": {
+            "description": "The transition points where the lower envelope changes slope, indicating a change in the dominant line segment. The x value range is -5 to 2.",
+            "format": "list of tuples",
+            "value": "[(-5, -8), (-4, -4), (-1.4, 3.8), (1, -1), (2, -6)]"
+        }
+    }
+}

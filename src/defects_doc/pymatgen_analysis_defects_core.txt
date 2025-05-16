@@ -1,0 +1,18 @@
+Classes representing defects.
+
+Functions
+center_structure(structure, ref_fpos)	Shift the sites around a center.
+get_element(sp_el)	Get the element from a species or element.
+get_vacancy(structure, isite, **kwargs)	Get a vacancy defect from a structure and site index.
+perturb_sites(structure, distance[, ...])	Performs a random perturbation.
+update_structure(structure, site, defect_type)	Update the structure with the defect site.
+
+Classes
+Adsorbate(structure, site[, multiplicity, ...])	Subclass of Interstitial with a different name.
+Defect(structure, site[, multiplicity, ...])	Abstract class for a single point defect.
+DefectComplex(defects[, oxi_state])	A complex of defects.
+DefectType(value)	Defect type, for sorting purposes.
+Interstitial(structure, site[, ...])	Interstitial Defect.
+NamedDefect(name, bulk_formula, element_changes)	Class for defect definition without the UC structure.
+Substitution(structure, site[, ...])	Single-site substitutional defects.
+Vacancy(structure, site[, multiplicity, ...])	Class representing a vacancy defect.

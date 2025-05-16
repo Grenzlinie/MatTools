@@ -1,0 +1,10 @@
+{
+    "JSON_File_Name": "test_pchip_eval",
+    "properties": {
+        "pchip_interpolation_integral": {
+            "description": "The interpolated value(s) at the given x input(s) based on the adjusted piecewise cubic Hermite interpolant method.",
+            "format": "np.allclose",
+            "value": "8.227688936841835"
+        }
+    }
+}

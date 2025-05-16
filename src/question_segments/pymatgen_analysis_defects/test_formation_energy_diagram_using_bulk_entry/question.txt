@@ -1,0 +1,143 @@
+As a materials scientist, you are utilizing Pymatgen to write functions to calculate material properties. Here is what you need to do:
+- Calculate the following properties:
+    - `chempot_limits`: The number of chemical potential limits in the formation energy diagram, indicating the number of distinct chemical environments considered. Uses parameters defect_entries, vbm, bulk_entry and pd_entries from orginal formation energy diagram to create a new formation energy diagram and then calculates this property. The format is an integer.
+    - `defect_chemsys`: The chemical system of the defects, represented as a string of element symbols separated by hyphens. The format is a string.
+    - `bulk_formula`: The chemical formula of the bulk material used in the formation energy diagram. The format is a string.
+
+If you need to read files or generate data, please refer to the following instructions:
+- Read or Generate Data:
+    - Access the test directory path at: `tool_source_code/pymatgen-analysis-defects/tests/test_files/`.
+    - Generate the formation energy diagram using the Pymatgen function: 
+    ```python
+    import copy
+    import os
+    import numpy as np
+    from pathlib import Path
+    from matplotlib import pyplot as plt
+    from monty.serialization import loadfn
+    from pymatgen.analysis.phase_diagram import PhaseDiagram
+    from pymatgen.analysis.defects.core import PeriodicSite, Substitution
+    from pymatgen.analysis.defects.thermo import DefectEntry, FormationEnergyDiagram
+    from pymatgen.core import Element, Structure
+    from pymatgen.io.vasp.outputs import Locpot, Vasprun
+    def gan_struct(test_dir):
+        return Structure.from_file(test_dir / "GaN.vasp")
+    def data_Mg_Ga(test_dir):
+        """Get the data in the following format:
+        {
+            "bulk_sc": {
+                "vasp_run": Vasprun,
+                "locpot": Locpot,
+            },
+            "q=1": {
+                "vasp_run": Vasprun,
+                "locpot": Locpot,
+            },
+            ...
+        }.
+        """
+        root_dir = test_dir / "Mg_Ga"
+        data = defaultdict(dict)
+        for fold in root_dir.glob("./*"):
+            if not fold.is_dir():
+                continue
+            data[fold.name] = {
+                "vasprun": Vasprun(fold / "vasprun.xml.gz"),
+                "locpot": Locpot.from_file(fold / "LOCPOT.gz"),
+            }
+        return data
+    def data_Mg_Ga(test_dir):
+        """Get the data in the following format:
+        {
+            "bulk_sc": {
+                "vasp_run": Vasprun,
+                "locpot": Locpot,
+            },
+            "q=1": {
+                "vasp_run": Vasprun,
+                "locpot": Locpot,
+            },
+            ...
+        }.
+        """
+        root_dir = test_dir / "Mg_Ga"
+        data = defaultdict(dict)
+        for fold in root_dir.glob("./*"):
+            if not fold.is_dir():
+                continue
+            data[fold.name] = {
+                "vasprun": Vasprun(fold / "vasprun.xml.gz"),
+                "locpot": Locpot.from_file(fold / "LOCPOT.gz"),
+            }
+        return data
+    def defect_Mg_Ga(gan_struct):
+        ga_site = gan_struct[0]
+        mg_site = PeriodicSite(Specie("Mg"), ga_site.frac_coords, gan_struct.lattice)
+        return Substitution(gan_struct, mg_site)
+        def defect_entries_and_plot_data_Mg_Ga(data_Mg_Ga, defect_Mg_Ga):
+        bulk_locpot = data_Mg_Ga["bulk_sc"]["locpot"]
+
+        def get_data(q):
+            computed_entry = data_Mg_Ga[f"q={q}"]["vasprun"].get_computed_entry(
+                inc_structure=True
+            )
+            defect_locpot = data_Mg_Ga[f"q={q}"]["locpot"]
+
+            def_entry = DefectEntry(
+                defect=defect_Mg_Ga, charge_state=q, sc_entry=computed_entry
+            )
+            frey_summary = def_entry.get_freysoldt_correction(
+                defect_locpot=defect_locpot, bulk_locpot=bulk_locpot, dielectric=14
+            )
+            return def_entry, frey_summary
+
+        defect_entries = dict()
+        plot_data = dict()
+        for qq in [-2, -1, 0, 1]:
+            defect_entry, frey_summary = get_data(qq)
+            defect_entries[qq] = defect_entry
+            plot_data[qq] = frey_summary.metadata["plot_data"]
+        return defect_entries, plot_data
+    def stable_entries_Mg_Ga_N(test_dir):
+        return loadfn(test_dir / "stable_entries_Mg_Ga_N.json")
+    def formation_energy_diagram(
+        data_Mg_Ga, defect_entries_and_plot_data_Mg_Ga, stable_entries_Mg_Ga_N):
+        bulk_vasprun = data_Mg_Ga["bulk_sc"]["vasprun"]
+        bulk_bs = bulk_vasprun.get_band_structure()
+        vbm = bulk_bs.get_vbm()["energy"]
+        bulk_entry = bulk_vasprun.get_computed_entry(inc_structure=False)
+        defect_entries, _ = defect_entries_and_plot_data_Mg_Ga
+
+        def_ent_list = list(defect_entries.values())
+        atomic_entries = list(
+            filter(lambda x: len(x.composition.elements) == 1, stable_entries_Mg_Ga_N)
+        )
+        pd = PhaseDiagram(stable_entries_Mg_Ga_N)
+        fed = FormationEnergyDiagram.with_atomic_entries(
+            defect_entries=def_ent_list,
+            atomic_entries=atomic_entries,
+            vbm=vbm,
+            inc_inf_values=False,
+            phase_diagram=pd,
+            bulk_entry=bulk_entry,
+        )
+        # dataframe conversion
+        df = fed.as_dataframe()
+        cp = fed.get_chempots(rich_element=Element("Ga"))
+        return fed
+    # use copy.deepcopy method to get the copy of formation energy diagram and defect entries through the funtion above.
+    ```
+
+All content is executed within the function, and the function does not require any input to output the result. The format of the function should follow these guidelines:
+- Write a Python function that:
+    - Reads the data from the provided file paths or generate data based on the description in the first section.
+    - Calculates all the properties mentioned above using Pymatgen, as well as basic Python methods or functions.
+    - Handles errors during property calculations such that if any property calculation fails, the corresponding property value is set to None, while other properties are still calculated and included in the output.
+    - Returns a dictionary where the property names are keys, and the calculated results are the values.
+
+- Ensure your function includes:
+    - Necessary imports (e.g., `from pymatgen.core import Structure`).
+    - Proper file handling or data generation code.
+    - Output in the form of a dictionary as specified above.
+    - A complete docstring with clear input parameters, data types, and a description of the output.
+

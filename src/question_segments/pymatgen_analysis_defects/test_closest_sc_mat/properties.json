@@ -1,0 +1,15 @@
+{
+    "JSON_File_Name": "test_closest_sc_mat",
+    "properties": {
+        "supercell_structure_matching": {
+            "description": "Checks if the generated supercell structure closely matches a reference supercell matrix by comparing the minimum distance of sorted results.",
+            "format": "bool",
+            "value": "True"
+        },
+        "closest_supercell_matrix": {
+            "description": "Verifies that the closest supercell matrix obtained from the unit cell and vacancy supercell structures matches the reference supercell matrix.",
+            "format": "np.allclose (for approximate comparison of matrices)",
+            "value": "[[2, 1, 2], [2, 0, 3], [2, 1, 1]]"
+        }
+    }
+}

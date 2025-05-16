@@ -1,0 +1,10 @@
+{
+    "JSON_File_Name": "test_get_avg_chg",
+    "properties": {
+        "average_charge_density": {
+            "description": "The average charge density within a spherical region of a crystal structure, calculated using charge density data from a CHGCAR file.",
+            "format": "np.allclose (approximate comparison of float values)",
+            "value": "0.021302511375915358"
+        }
+    }
+}

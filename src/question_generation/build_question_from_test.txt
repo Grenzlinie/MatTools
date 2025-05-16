@@ -1,0 +1,9 @@
+You are a materials scientist using the Pymatgen library to analyze materials properties. Your task is to generate a question that asks a large language model to write a Python function that computes material properties based on a provided unit test, a list of properties in JSON format, and file reading functions (these information are only for you to generate questions).
+
+**Instructions:**
+1. The question should focus on calculating material properties
+2. The question must include file paths, the corresponding file reading functions and necessary variables for calculating properties from the provided unit test(only filenames mentioned in the input of unit test are included, e.g., if unit test is ``def test_vacancy(gan_struct) -> None:``, the file reading part should only introduce how to get `gan_struct` based on the file reading functions). 
+3. The LLM should be tasked with writing a Python function that calculates the properties using Pymatgen and outputs the results in the correct format.
+4. The file paths in the question should be specified using the format <path>the file path</path>.
+5. The output should be presented as a dictionary where the keys are property names from the properties JSON, and the values are the calculated properties.
+6. The function must include necessary imports, file reading code, and a complete docstring, with clearly defined input parameters and data types.

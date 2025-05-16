@@ -1,0 +1,83 @@
+As a materials scientist, you are utilizing Pymatgen to write functions to calculate material properties. Here is what you need to do:
+- Calculate the following properties:
+    - `site_specie_symbol`: The chemical symbol of the species at a specific site in the structure. Format: str.
+    - `substitution_symmetry_equivalence`: Checks if two substitution sites are symmetry equivalent. Format: bool.
+    - `substitution_string_representation`: String representation of the substitution defect. Format: str.
+    - `substitution_oxidation_state`: Oxidation state of the substitution defect. Format: int.
+    - `substitution_charge_states`: Possible charge states for the substitution defect. Format: list.
+    - `substitution_multiplicity`: Multiplicity of the substitution defect in the structure. Format: int.
+    - `supercell_site_specie_symbol`: The chemical symbol of the species at the defect site in the supercell structure. Format: str.
+    - `supercell_formula`: Chemical formula of the supercell structure containing the defect. Format: str.
+    - `substitution_name`: Name of the substitution defect. Format: str.
+    - `substitution_latex_name`: LaTeX formatted name of the substitution defect. Format: str.
+    - `substitution_element_changes`: Elemental changes due to the substitution defect. Format: dict.
+    - `free_sites_intersection_ratio`: Ratio of the intersection to the union of free sites in the supercell with locking. Format: float.
+    - `perturbation_free_sites`: Check if the set of free site indices after perturbation in the supercell structure is equal to the set of free site indices reference (free_sites_ref). Format: bool.
+    - `user_defined_charge_states`: User-defined charge states for the substitution defect. Format: list.
+    - `default_charge_states`: Default charge states for the substitution defect when no user charges are defined. Format: list.
+    - `target_fractional_coordinates`: Fractional coordinates of the defect site in the supercell structure. Format: list.
+    - `closest_equivalent_site_coordinates`: Fractional coordinates of the closest equivalent site after changing target coordinates. Format: list.
+    - `antisite_charge_states`: Charge states for an antisite substitution defect. Format: list.
+
+If you need to read files or generate data, please refer to the following instructions:
+- Read or Generate Data:
+    - Access the structure file path at: `tool_source_code/pymatgen-analysis-defects/tests/test_files/GaN.vasp`.
+    - Use the Pymatgen function:
+    ```python
+    from pymatgen.core import Structure
+    gan_struct = Structure.from_file(file_path / "GaN.vasp")
+    ```
+    - Generate substitution defects and supercell structures using Pymatgen:
+    ```python
+    from pymatgen.analysis.defects.core import PeriodicSite, Substitution
+    from pymatgen.core.periodic_table import Specie
+    s = gan_struct.copy()
+    n_site = s.sites[3]
+    o_site = PeriodicSite(Specie("O"), n_site.frac_coords, s.lattice)
+    o_site2 = PeriodicSite(Specie("O"), s.sites[2].frac_coords, s.lattice)
+    sub = Substitution(s, o_site)
+    sub2 = Substitution(s, o_site2)
+    sc, site_ = sub.get_supercell_structure(return_site=True)
+    sc_locked = sub.get_supercell_structure(relax_radius=5.0)
+    free_sites = [
+        i
+        for i, site in enumerate(sc_locked)
+        if site.properties["selective_dynamics"][0]
+    ]
+    finder = DefectSiteFinder()
+    fpos = finder.get_defect_fpos(sc_locked, sub.structure)
+    cpos = sc_locked.lattice.get_cartesian_coords(fpos)
+    free_sites_ref = sc_locked.get_sites_in_sphere(cpos, 5.0, include_index=True)
+    free_sites_ref = [site.index for site in free_sites_ref]
+    sc_locked_perturbed = sub.get_supercell_structure(relax_radius=5.0, perturb=0.0)
+    free_sites_perturbed = sc_locked_perturbed.get_sites_in_sphere(cpos, 5.0, include_index=True)
+    free_sites_perturbed = [site.index for site in free_sites_perturbed]
+    dd = sub.as_dict()
+    dd["user_charges"] = [-100, 102]
+    sub_ = Substitution.from_dict(dd)
+    sub_sc_struct = sub.get_supercell_structure()
+    fpos = finder.get_defect_fpos(sub_sc_struct, sub.structure)
+    sub_sc_struct = sub.get_supercell_structure(target_frac_coords=[0.3, 0.5, 0.9])
+    fpos = finder.get_defect_fpos(sub_sc_struct, sub.structure)
+    ga_site = s.sites[0]
+    n_site = PeriodicSite(Specie("N"), ga_site.frac_coords, s.lattice)
+    n_ga = Substitution(s, n_site)
+    s.remove_oxidation_states()
+    ga_site = s.sites[0]
+    n_site = PeriodicSite(Element("N"), ga_site.frac_coords, s.lattice)
+    n_ga = Substitution(s, n_site)
+    ```
+
+All content is executed within the function, and the function does not require any input to output the result. The format of the function should follow these guidelines:
+- Write a Python function that:
+    - Reads the data from the provided file paths or generate data based on the description in the first section.
+    - Calculates all the properties mentioned above using Pymatgen, as well as basic Python methods or functions.
+    - Handles errors during property calculations such that if any property calculation fails, the corresponding property value is set to None, while other properties are still calculated and included in the output.
+    - Returns a dictionary where the property names are keys, and the calculated results are the values.
+
+- Ensure your function includes:
+    - Necessary imports (e.g., `from pymatgen.core import Structure`).
+    - Proper file handling or data generation code.
+    - Output in the form of a dictionary as specified above.
+    - A complete docstring with clear input parameters, data types, and a description of the output.
+

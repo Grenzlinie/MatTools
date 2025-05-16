@@ -1,0 +1,34 @@
+As a materials scientist, you are utilizing Pymatgen to write functions to calculate material properties. Here is what you need to do:
+- Calculate the following properties:
+    - `inter_vbm_integral`: Integral of the imaginary part of the dielectric function at the valence band maximum (VBM) over a specified energy range. The ranges are eps_vbm[:100] and energy[:100]. energy: The energy grid representing the dielectric function. eps_vbm: The dielectric function from the VBM to the defect state. Format: float.
+    - `inter_cbm_integral`: Integral of the imaginary part of the dielectric function at the conduction band minimum (CBM) over a specified energy range. The ranges are eps_cbm[:100] and energy[:100]. energy: The energy grid representing the dielectric function. eps_cbm: The dielectric function from the defect state to the CBM. Format: float.
+    - `optical_transitions_dataframe_type`: Verification that the first return value of plotting optical transitions is a pandas DataFrame. Format: boolean.
+    - `optical_transitions_dataframe_length`: Number of entries in the DataFrame df. Format: int.
+
+If you need to read files or generate data, please refer to the following instructions:
+- Read or Generate Data:
+    - Access the directory containing the necessary files path at: `tool_source_code/pymatgen-analysis-defects/tests/test_files/v_Ga/ccd_0_-1/optics`.
+    - Use the Pymatgen function ```python\nfrom pymatgen.analysis.defects.ccd import HarmonicDefect\nhd0 = HarmonicDefect.from_directories(directories=[dir0_opt], store_bandstructure=True)\n``` to create a `HarmonicDefect` object.
+    - Use the Pymatgen function ```python\nfrom pymatgen.io.vasp.outputs import Waveder\nhd0.waveder = Waveder.from_binary(dir0_opt / "WAVEDER")\n``` to read the WAVEDER file and assign it to the `waveder` attribute of the `HarmonicDefect` object.
+    - Import related functions:
+    ```python
+    import numpy as np
+    import pandas as pd
+    from pymatgen.analysis.defects.plotting.optics import plot_optical_transitions
+    ```
+    - Use the method `energy, eps_vbm, eps_cbm = hd0.get_dielectric_function(idir=0, jdir=0)` on the `HarmonicDefect` object to obtain the energy, eps_vbm, and eps_cbm arrays.
+    - Use the function `df, _, _ = plot_optical_transitions(hd0, kpt_index=0, band_window=5)` to generate the first optical transitions DataFrame.
+
+All content is executed within the function, and the function does not require any input to output the result. The format of the function should follow these guidelines:
+- Write a Python function that:
+    - Reads the data from the provided file paths or generate data based on the description in the first section.
+    - Calculates all the properties mentioned above using Pymatgen, as well as basic Python methods or functions.
+    - Handles errors during property calculations such that if any property calculation fails, the corresponding property value is set to None, while other properties are still calculated and included in the output.
+    - Returns a dictionary where the property names are keys, and the calculated results are the values.
+
+- Ensure your function includes:
+    - Necessary imports (e.g., `from pymatgen.analysis.defects.ccd import HarmonicDefect`).
+    - Proper file handling or data generation code.
+    - Output in the form of a dictionary as specified above.
+    - A complete docstring with clear input parameters, data types, and a description of the output.
+

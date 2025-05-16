@@ -1,0 +1,13 @@
+{
+    "JSON_File_Name": "test_antisite_generator",
+    "properties": {
+        "antisite_defect_names": {
+            "description": "Names of antisite defects generated from the given structure, indicating the swapping of atomic positions between different species.",
+            "format": "list",
+            "value": [
+                "Ga_N",
+                "N_Ga"
+            ]
+        }
+    }
+}

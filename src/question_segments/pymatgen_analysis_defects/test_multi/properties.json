@@ -1,0 +1,15 @@
+{
+    "JSON_File_Name": "test_multi",
+    "properties": {
+        "Fermi_Level_Solution": {
+            "description": "The Fermi level solution is calculated using the chemical potentials and density of states at a given temperature, ensuring it is greater than zero.",
+            "format": "float",
+            "value": "ef > 0"
+        },
+        "Formation_Energy_Diagrams_Count": {
+            "description": "The number of formation energy diagrams created using atomic entries and a phase diagram, ensuring the correct construction of the MultiFormationEnergyDiagram.",
+            "format": "int",
+            "value": "1"
+        }
+    }
+}

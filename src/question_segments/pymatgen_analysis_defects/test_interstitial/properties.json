@@ -1,0 +1,84 @@
+{
+    "JSON_File_Name": "test_interstitial",
+    "properties": {
+        "oxidation_state": {
+            "description": "The oxidation state of the interstitial defect site.",
+            "format": "int",
+            "value": 3
+        },
+        "charge_states": {
+            "description": "Possible charge states for the interstitial defect.",
+            "format": "list",
+            "value": [
+                -1,
+                0,
+                1,
+                2,
+                3,
+                4
+            ]
+        },
+        "fractional_coordinates": {
+            "description": "Fractional coordinates of the interstitial defect site within the lattice.",
+            "format": "np.allclose",
+            "value": [
+                0,
+                0,
+                0.75
+            ]
+        },
+        "supercell_formula": {
+            "description": "Chemical formula of the supercell containing the interstitial defect.",
+            "format": "str",
+            "value": "Ga64 N65"
+        },
+        "defect_name": {
+            "description": "Name of the interstitial defect, indicating the element and type of defect.",
+            "format": "str",
+            "value": "N_i"
+        },
+        "defect_string_representation": {
+            "description": "String representation of the interstitial defect, including its position.",
+            "format": "str",
+            "value": "N intersitial site at [0.00,0.00,0.75]"
+        },
+        "element_changes": {
+            "description": "Changes in the number of elements due to the interstitial defect.",
+            "format": "dict",
+            "value": {
+                "N": 1
+            }
+        },
+        "latex_name": {
+            "description": "LaTeX formatted name of the interstitial defect.",
+            "format": "str",
+            "value": "N$_{\\rm i}$"
+        },
+        "defect_fpos_initial": {
+            "description": "Fractional coordinates of the defect site in the supercell structure.",
+            "format": "np.allclose",
+            "value": [
+                0,
+                0,
+                0.398096581
+            ]
+        },
+        "defect_fpos_modified": {
+            "description": "Fractional coordinates of the defect site in the modified supercell structure.",
+            "format": "np.allclose",
+            "value": [
+                0.25,
+                0.5,
+                0.89809658
+            ]
+        },
+        "user_defined_charge_states": {
+            "description": "User-defined charge states for the interstitial defect.",
+            "format": "list",
+            "value": [
+                -100,
+                102
+            ]
+        }
+    }
+}

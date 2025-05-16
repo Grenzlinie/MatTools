@@ -1,0 +1,15 @@
+{
+    "JSON_File_Name": "test_formation_energy_diagram_numerical",
+    "properties": {
+        "formation_energy": {
+            "description": "The energy required to form a defect in a material, calculated at a given Fermi level and chemical potential.",
+            "format": "float (using pytest.approx for approximate comparison)",
+            "value": "1"
+        },
+        "defect_concentration": {
+            "description": "The concentration of defects in a material at a specified Fermi level, chemical potentials, and temperature.",
+            "format": "float (using pytest.approx for approximate comparison)",
+            "value": "3.1751875e-17"
+        }
+    }
+}

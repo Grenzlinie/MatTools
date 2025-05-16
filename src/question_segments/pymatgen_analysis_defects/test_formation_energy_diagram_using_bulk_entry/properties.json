@@ -1,0 +1,20 @@
+{
+    "JSON_File_Name": "test_formation_energy_diagram_using_bulk_entry",
+    "properties": {
+        "chempot_limits": {
+            "description": "The number of chemical potential limits in the formation energy diagram, indicating the number of distinct chemical environments considered. Uses parameters defect_entries, vbm, bulk_entry and pd_entries from orginal formation energy diagram to create a new formation energy diagram and then calculates this property.",
+            "format": "int",
+            "value": 3
+        },
+        "defect_chemsys": {
+            "description": "The chemical system of the defects, represented as a string of element symbols separated by hyphens.",
+            "format": "str",
+            "value": "Ga-Mg-N"
+        },
+        "bulk_formula": {
+            "description": "The chemical formula of the bulk material used in the formation energy diagram.",
+            "format": "str",
+            "value": "GaN"
+        }
+    }
+}

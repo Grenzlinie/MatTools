@@ -1,0 +1,13 @@
+Recombination algorithms pure function implementations.
+
+Functions
+analytic_overlap_NM(dQ, omega1, omega2, n1, n2)	Compute the overlap between two displaced harmonic oscillators.
+boltzmann_filling(omega_i, temperature[, ...])	Calculate the Boltzman filling of the phonon states.
+fact(n)	Compute the factorial of n.
+get_Rad_coef(T, dQ, dE, omega_i, omega_f, ...)	Compute the Radiative recombination Coefficient.
+get_SRH_coef(T, dQ, dE, omega_i, omega_f, ...)	Compute the SRH recombination Coefficient.
+get_mQn(dQ, omega_i, omega_f, m_init, Nf, ovl)	Get the matrix element values for the position operator.
+get_mn(dQ, omega_i, omega_f, m_init, en_final)	Get the matrix element values for the position operator.
+herm(x, n)	Recursive definition of hermite polynomial.
+njit(*args, **kwargs)	Dummy decorator for njit.
+pchip_eval(x, x_coarse, y_coarse[, ...])	Evaluate a piecewise cubic Hermite interpolant.

@@ -1,0 +1,10 @@
+Module for defect analysis.
+
+core	Classes representing defects.
+generators	Defect generators.
+thermo	Classes and methods related to thermodynamics and energy.
+ccd	Configuration-coordinate diagram analysis.
+finder	Defect position identification without prior knowledge.
+recombination	Recombination algorithms pure function implementations.
+supercells	Functions for creating supercells for defect calculations.
+utils	Utilities for defects module.

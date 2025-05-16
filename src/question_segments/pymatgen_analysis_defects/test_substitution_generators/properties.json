@@ -1,0 +1,20 @@
+{
+    "JSON_File_Name": "test_substitution_generators",
+    "properties": {
+        "defect_type": {
+            "description": "Checks if the generated defect is of type Substitution.",
+            "format": "bool",
+            "value": "True"
+        },
+        "replaced_atoms_set_1": {
+            "description": "Verifies the set of atoms that have been substituted in the structure, ensuring that Ga is replaced by either Mg or Ca.",
+            "format": "set",
+            "value": "{\"Mg\", \"Ca\"}"
+        },
+        "replaced_atoms_set_2": {
+            "description": "Verifies the set of atoms that have been substituted in the structure, ensuring that Ga is replaced by Mg.",
+            "format": "set",
+            "value": "{\"Mg\"}"
+        }
+    }
+}

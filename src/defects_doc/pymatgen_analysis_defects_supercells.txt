@@ -1,0 +1,7 @@
+Functions for creating supercells for defect calculations.
+
+Functions
+get_closest_sc_mat(uc_struct, sc_struct[, ...])	Get the best guess for the supercell matrix that created this defect cell.
+get_matched_structure_mapping(uc_struct, ...)	Get the mapping of the supercell to the unit cell.
+get_matched_structure_mapping_old(uc_struct, ...)	Get the mapping of the supercell to the unit cell.
+get_sc_fromstruct(base_struct[, min_atoms, ...])	Generate the best supercell from a unitcell.

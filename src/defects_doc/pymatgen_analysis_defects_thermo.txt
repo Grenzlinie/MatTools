@@ -1,0 +1,17 @@
+Classes and methods related to thermodynamics and energy.
+
+Functions
+ensure_stable_bulk(pd, entry[, threshold])	Added entry to phase diagram and ensure that it is stable.
+fermi_dirac(energy, temperature)	Get value of fermi dirac distribution.
+get_lower_envelope(lines)	Get the lower envelope of the formation energy.
+get_sc_locpot(uc_locpot, defect_struct, grid_out)	Transform a unit cell locpot to be like a supercell locpot.
+get_transitions(lines, x_min, x_max)	Get the "transition" points in a list of lines.
+get_upper_hull(points)	Get the upper hull of a set of points in 2D.
+group_defect_entries(defect_entries[, sm])	Group defect entries by their representation.
+group_formation_energy_diagrams(feds[, sm])	Group formation energy diagrams by their representation.
+plot_formation_energy_diagrams(...[, ...])	Plot the formation energy diagram.
+
+Classes
+DefectEntry(defect, charge_state, sc_entry, ...)	Data for completed defect supercell calculation.
+FormationEnergyDiagram(defect_entries, ...)	Formation energy.
+MultiFormationEnergyDiagram(...)	Container for multiple formation energy diagrams.

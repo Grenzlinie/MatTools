@@ -1,0 +1,14 @@
+Defect position identification without prior knowledge.
+
+Functions
+best_match(sv, sgs)	Find the best match for a site in the defect structure.
+cosine_similarity(vec1, vec2)	Cosine similarity between two vectors.
+get_site_groups(struct[, symprec, ...])	Group the sites in the structure by symmetry.
+get_site_vecs(struct)	Get the SiteVec representation of each site in the structure.
+get_soap_vec(struct)	Get the SOAP vector for each site in the structure.
+get_weighted_average_position(lattice, ...)	Get the weighted average position of a set of positions in frac coordinates.
+
+Classes
+DefectSiteFinder([symprec, angle_tolerance])	Find the location of a defect with no pior knowledge.
+SiteGroup(species, similar_sites, vec)	NamedTuple representing a group of symmetrically equivalent sites.
+SiteVec(species, site, vec)	NamedTuple representing a site in the defect structure.

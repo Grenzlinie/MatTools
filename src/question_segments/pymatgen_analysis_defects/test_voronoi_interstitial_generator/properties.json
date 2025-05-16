@@ -1,0 +1,20 @@
+{
+    "JSON_File_Name": "test_voronoi_interstitial_generator",
+    "properties": {
+        "defect_type": {
+            "description": "Checks if the generated defect is of type Interstitial.",
+            "format": "bool",
+            "value": "True"
+        },
+        "defect_specie": {
+            "description": "Verifies that the interstitial defect is of the specified element, in this case, Lithium (Li).",
+            "format": "bool",
+            "value": "True"
+        },
+        "defect_count": {
+            "description": "Ensures the correct number of interstitial defects are generated.",
+            "format": "int",
+            "value": "4"
+        }
+    }
+}

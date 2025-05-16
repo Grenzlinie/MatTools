@@ -1,0 +1,28 @@
+Utilities for defects module.
+
+Functions
+calculate_vol(coords)	Calculate volume given a set of points in 3D space.
+cluster_nodes(fcoords, lattice[, tol])	Cluster nodes that are too close together using hiercharcal clustering.
+converge(f, step, tol, max_h)	Simple newton iteration based convergence function.
+eV_to_k(energy)	Convert energy to reciprocal vector magnitude k via hbar*k^2/2m.
+generate_reciprocal_vectors_squared(a1, a2, ...)	Generate Reciprocal vectors squared.
+generic_group_labels(list_in[, comp])	Group a list of unsortable objects.
+genrecip(a1, a2, a3, encut)	Generate reciprocal lattice vectors within the energy cutoff.
+get_avg_chg(chgcar, fcoord[, radius])	Get the average charge in a sphere.
+get_ipr_in_window(bandstructure, procar[, ...])	Get the inverse participation ratio (IPR) of the states in a given band window.
+get_labeled_inserted_structure(sites, ...)	Get a list of inserted structures and a list of structure matching labels.
+get_local_extrema(chgcar[, find_min])	Get all local extrema fractional coordinates in charge density.
+get_localized_states(bandstructure, procar)	Find the (band, kpt, spin) index of the most localized state.
+get_plane_spacing(lattice)	Compute the plane spacing of a lattice.
+get_symmetry_labeled_structures()	Deprecated.
+get_zfile(directory, base_name[, allow_missing])	Find gzipped or non-gzipped versions of a file in a directory listing.
+group_docs(docs, sm, get_structure[, get_hash])	Group docs by a simple hash followed by structure.
+remove_collisions(fcoords, structure[, min_dist])	Removed points that are too close to existing atoms in the structure.
+sort_positive_definite(list_in, ref1, ref2, dist)	Sort a list where we can only compute a positive-definite distance.
+
+Classes
+ChargeInsertionAnalyzer(chgcar[, ...])	Object for insertions sites from charge density.
+CorrectionResult(correction_energy, metadata)	A summary of the corrections applied to a structure.
+QModel([beta, expnorm, gamma])	Model for the defect charge distribution.
+TopographyAnalyzer(structure, ...[, ...])	Topography Analyzer.
+VoronoiPolyhedron(lattice, frac_coords, ...)	Convenience container for a voronoi point in PBC and its associated polyhedron.

@@ -1,0 +1,15 @@
+{
+    "JSON_File_Name": "test_kumagai",
+    "properties": {
+        "correction_energy_neutral": {
+            "description": "The correction energy for a neutral defect state, expected to be approximately zero.",
+            "format": "float (using pytest.approx for approximate comparison)",
+            "value": "0"
+        },
+        "correction_energy_charged": {
+            "description": "The correction energy for a charged defect state, expected to be greater than zero.",
+            "format": "float",
+            "value": "> 0"
+        }
+    }
+}

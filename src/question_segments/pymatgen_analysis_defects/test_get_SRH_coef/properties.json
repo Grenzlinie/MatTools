@@ -1,0 +1,10 @@
+{
+    "JSON_File_Name": "test_get_SRH_coef",
+    "properties": {
+        "SRH_Coefficient": {
+            "description": "The Shockley-Read-Hall (SRH) recombination coefficient, which quantifies the rate of carrier recombination via defect states in a semiconductor.",
+            "format": "np.allclose (list of float values for approximate comparison)",
+            "value": "[4.64530153e-14, 4.64752885e-14, 4.75265302e-14]"
+        }
+    }
+}

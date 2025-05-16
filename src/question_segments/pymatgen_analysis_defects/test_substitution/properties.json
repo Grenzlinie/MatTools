@@ -1,0 +1,95 @@
+{
+    "JSON_File_Name": "test_substitution",
+    "properties": {
+        "site_specie_symbol": {
+            "description": "The chemical symbol of the species at a specific site in the structure.",
+            "format": "str",
+            "value": "N"
+        },
+        "substitution_symmetry_equivalence": {
+            "description": "Checks if two substitution sites are symmetry equivalent.",
+            "format": "bool",
+            "value": "True"
+        },
+        "substitution_string_representation": {
+            "description": "String representation of the substitution defect.",
+            "format": "str",
+            "value": "O subsitituted on the N site at at site #3"
+        },
+        "substitution_oxidation_state": {
+            "description": "Oxidation state of the substitution defect.",
+            "format": "int",
+            "value": "1"
+        },
+        "substitution_charge_states": {
+            "description": "Possible charge states for the substitution defect.",
+            "format": "list",
+            "value": "[-1, 0, 1, 2]"
+        },
+        "substitution_multiplicity": {
+            "description": "Multiplicity of the substitution defect in the structure.",
+            "format": "int",
+            "value": "2"
+        },
+        "supercell_site_specie_symbol": {
+            "description": "The chemical symbol of the species at the defect site in the supercell structure.",
+            "format": "str",
+            "value": "O"
+        },
+        "supercell_formula": {
+            "description": "Chemical formula of the supercell structure containing the defect.",
+            "format": "str",
+            "value": "Ga64 N63 O1"
+        },
+        "substitution_name": {
+            "description": "Name of the substitution defect.",
+            "format": "str",
+            "value": "O_N"
+        },
+        "substitution_latex_name": {
+            "description": "LaTeX formatted name of the substitution defect.",
+            "format": "str",
+            "value": "O$_{\\rm N}$"
+        },
+        "substitution_element_changes": {
+            "description": "Elemental changes due to the substitution defect.",
+            "format": "dict",
+            "value": "{Element('N'): -1, Element('O'): 1}"
+        },
+        "free_sites_intersection_ratio": {
+            "description": "Ratio of the intersection to the union of free sites in the supercell with locking.",
+            "format": "float",
+            "value": "1.0"
+        },
+        "perturbation_free_sites": {
+            "description": "Set of free site indices after perturbation in the supercell structure.",
+            "format": "set",
+            "value": "set(free_sites_ref2)"
+        },
+        "user_defined_charge_states": {
+            "description": "User-defined charge states for the substitution defect.",
+            "format": "list",
+            "value": "[-100, 102]"
+        },
+        "default_charge_states": {
+            "description": "Default charge states for the substitution defect when no user charges are defined.",
+            "format": "list",
+            "value": "[-1, 0, 1, 2]"
+        },
+        "target_fractional_coordinates": {
+            "description": "Fractional coordinates of the defect site in the supercell structure.",
+            "format": "np.allclose",
+            "value": "[0.1250, 0.0833335, 0.18794]"
+        },
+        "closest_equivalent_site_coordinates": {
+            "description": "Fractional coordinates of the closest equivalent site after changing target coordinates.",
+            "format": "np.allclose",
+            "value": "[0.375, 0.5833335, 0.68794]"
+        },
+        "antisite_charge_states": {
+            "description": "Charge states for an antisite substitution defect.",
+            "format": "list",
+            "value": "[-7, -6, -5, -4, -3, -2, -1, 0, 1]"
+        }
+    }
+}

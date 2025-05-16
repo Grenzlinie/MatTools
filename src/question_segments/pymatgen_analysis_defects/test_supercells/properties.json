@@ -1,0 +1,20 @@
+{
+    "JSON_File_Name": "test_supercells",
+    "properties": {
+        "supercell_matrix_shape": {
+            "description": "The shape of the supercell transformation matrix through using `get_sc_fromstruct' method. The format is a tuple.",
+            "format": "tuple",
+            "value": "(3, 3)"
+        },
+        "matched_supercell_matrix_shape": {
+            "description": "The shape of the matched supercell transformation matrix through using `get_matched_structure_mapping' method. The format is a tuple.",
+            "format": "tuple",
+            "value": "(3, 3)"
+        },
+        "supercell_lattice_parameters_consistency": {
+            "description": "The consistency of lattice constants between two supercells generated from different pymatgen methods (`get_sc_fromstruct' and `get_matched_structure_mapping'). The format is a boolean indicating if the lattice constants are consistent.",
+            "format": "boolean",
+            "value": "True"
+        }
+    }
+}

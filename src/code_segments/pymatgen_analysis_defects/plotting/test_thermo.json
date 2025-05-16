@@ -1,0 +1,14 @@
+{
+    "uuid": "fafeef43-804c-4eff-9b07-0e9306c0a7d8",
+    "filename": "/Users/siyuliu/Desktop/MacBot/src/tool_source_code/pymatgen-analysis-defects/tests/plotting/test_thermo.py",
+    "imports": [
+        "from pymatgen.analysis.defects.plotting.thermo import (\n    plot_chempot_2d,\n    plot_formation_energy_diagrams,\n)",
+        "from pymatgen.core import Element"
+    ],
+    "classes": [],
+    "global functions": [
+        "def test_fed_plot(basic_fed) -> None:\n    fig = plot_formation_energy_diagrams([basic_fed])\n    assert {d_.name for d_ in fig.data} == {\"Mg_Ga\", \"Mg_Ga:slope\"}",
+        "def test_chempot_plot(basic_fed) -> None:\n    plot_chempot_2d(basic_fed, x_element=Element(\"Mg\"), y_element=Element(\"Ga\"))"
+    ],
+    "global variables": []
+}

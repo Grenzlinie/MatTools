@@ -1,0 +1,15 @@
+{
+    "JSON_File_Name": "test_interstitial_generator",
+    "properties": {
+        "number_of_interstitials": {
+            "description": "The number of interstitial sites generated for a given structure and insertion sites.",
+            "format": "int",
+            "value": 1
+        },
+        "interstitial_site_description": {
+            "description": "String representation of the first interstitial site, including the element and its coordinates.",
+            "format": "str",
+            "value": "Mg intersitial site at [0.00,0.00,0.00]"
+        }
+    }
+}

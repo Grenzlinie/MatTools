@@ -1,0 +1,20 @@
+{
+    "JSON_File_Name": "test_charge_interstitial_generator",
+    "properties": {
+        "defect_type": {
+            "description": "Checks if all generated defect belong to type Interstitial.",
+            "format": "bool",
+            "value": "True"
+        },
+        "defect_specie": {
+            "description": "Verifies that the specie of each interstitial site is Gallium (Ga).",
+            "format": "bool",
+            "value": "True"
+        },
+        "defect_count": {
+            "description": "The number of generated interstitial defects.",
+            "format": "int",
+            "value": "2"
+        }
+    }
+}

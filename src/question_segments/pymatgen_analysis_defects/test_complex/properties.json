@@ -1,0 +1,50 @@
+{
+    "JSON_File_Name": "test_complex",
+    "properties": {
+        "defect_complex_name": {
+            "description": "The name of the defect complex, indicating the types of defects present.",
+            "format": "str",
+            "value": "O_N+v_Ga"
+        },
+        "supercell_structure_formula": {
+            "description": "The chemical formula of the supercell structure after introducing the defect complex.",
+            "format": "str",
+            "value": "Ga63 N63 O1"
+        },
+        "defect_complex_oxidation_state": {
+            "description": "Checks if the total oxidation state of the defect complex is equal to the number calculated as the sum of the oxidation states of substitution defect and vacancy defect.",
+            "format": "bool",
+            "value": "True"
+        },
+        "element_changes": {
+            "description": "The net change in the number of each element due to the defect complex.",
+            "format": "dict",
+            "value": "{Element('Ga'): -1, Element('N'): -1, Element('O'): 1}"
+        },
+        "defect_structure_formula": {
+            "description": "The chemical formula of the defect structure itself, without considering the supercell.",
+            "format": "str",
+            "value": "Ga1 N1 O1"
+        },
+        "defect_complex_with_interstitial_name": {
+            "description": "The name of the defect complex including an interstitial defect.",
+            "format": "str",
+            "value": "O_N+v_Ga+H_i"
+        },
+        "supercell_structure_with_dummy_formula": {
+            "description": "The chemical formula of the supercell structure with a dummy species added to account for the interstitial defect.",
+            "format": "str",
+            "value": "Ga63 H1 Xe1 N63 O1"
+        },
+        "defect_complex_equality": {
+            "description": "Checks if two defect complexes are identical.",
+            "format": "bool",
+            "value": "True"
+        },
+        "defect_complex_inequality": {
+            "description": "Checks if two defect complexes are different.",
+            "format": "bool",
+            "value": "True"
+        }
+    }
+}

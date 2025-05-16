@@ -1,0 +1,15 @@
+{
+    "JSON_File_Name": "test_adsorbate",
+    "properties": {
+        "adsorbate_name": {
+            "description": "The name of the adsorbate, typically indicating the element and its role as an adsorbate.",
+            "format": "str",
+            "value": "N_{ads}"
+        },
+        "adsorbate_description": {
+            "description": "A string representation of the adsorbate site, including the element and its fractional coordinates.",
+            "format": "str",
+            "value": "N adsorbate site at [0.00,0.00,0.75]"
+        }
+    }
+}

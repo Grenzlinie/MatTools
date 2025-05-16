@@ -1,0 +1,9 @@
+Configuration-coordinate diagram analysis.
+
+Functions
+get_SRH_coefficient(initial_state, ...[, g, ...])	Get the SRH coefficient for a defect.
+get_dQ(ground, excited)	Calculate configuration coordinate difference.
+plot_pes(hd[, x_shift, y_shift, width, ax])	Plot the Potential Energy Surface of a HarmonicDefect.
+
+Classes
+HarmonicDefect(omega, charge_state, ispin[, ...])	A class representing the a harmonic defect vibronic state.

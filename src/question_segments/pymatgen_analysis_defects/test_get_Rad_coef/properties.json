@@ -1,0 +1,10 @@
+{
+    "JSON_File_Name": "test_get_Rad_coef",
+    "properties": {
+        "Radiative_Coefficient": {
+            "description": "Calculates the radiative recombination coefficient based on temperature, dipole moment, and other parameters.",
+            "format": "np.allclose (list of float values for approximate comparison)",
+            "value": "[6.97397183e-31, 6.98245178e-31, 7.38666936e-31]"
+        }
+    }
+}

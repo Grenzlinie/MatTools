@@ -1,0 +1,43 @@
+As a materials scientist, you are utilizing Pymatgen to write functions to calculate material properties. Here is what you need to do:
+- Calculate the following properties:
+    - `correction_energy_neutral`: The correction energy for a neutral defect state. Format: float.
+    - `correction_energy_charged`: The correction energy for a charged defect state. Format: float.
+
+If you need to read files or generate data, please refer to the following instructions:
+- Read or Generate Data:
+    - Access the structure files path at: 
+        - `tool_source_code/pymatgen-analysis-defects/tests/test_files/Mg_Ga/bulk_sc`.
+        - `tool_source_code/pymatgen-analysis-defects/tests/test_files/Mg_Ga/q=0`.
+        - `tool_source_code/pymatgen-analysis-defects/tests/test_files/Mg_Ga/q=1`.
+    - Use the Pymatgen function
+    ```python
+    from pymatgen.analysis.defects.corrections.kumagai import (
+    get_efnv_correction,
+    get_structure_with_pot,
+    )
+    sb = get_structure_with_pot(test_dir / "Mg_Ga" / "bulk_sc")
+    sd0 = get_structure_with_pot(test_dir / "Mg_Ga" / "q=0")
+    sd1 = get_structure_with_pot(test_dir / "Mg_Ga" / "q=1")
+    res0 = get_efnv_correction(
+        0, sd0, sb, dielectric_tensor=[[1, 0, 0], [0, 1, 0], [0, 0, 1]]
+    )
+    res1 = get_efnv_correction(
+        1, sd1, sb, dielectric_tensor=[[1, 0, 0], [0, 1, 0], [0, 0, 1]]
+    )
+    correction_energy_neutral = res0.[MASK]
+    correction_energy_charged = res1.[MASK]
+    ``` to read the structure data and replace [MASK] with correct code to get the required properties.
+
+All content is executed within the function, and the function does not require any input to output the result. The format of the function should follow these guidelines:
+- Write a Python function that:
+    - Reads the data from the provided file paths.
+    - Calculates all the properties mentioned above using Pymatgen, as well as basic Python methods or functions.
+    - Handles errors during property calculations such that if any property calculation fails, the corresponding property value is set to None, while other properties are still calculated and included in the output.
+    - Returns a dictionary where the property names are keys, and the calculated results are the values.
+
+- Ensure your function includes:
+    - Necessary imports (e.g., `from pymatgen.analysis.defects.corrections.kumagai import get_efnv_correction`).
+    - Proper file handling or data generation code.
+    - Output in the form of a dictionary as specified above.
+    - A complete docstring with clear input parameters, data types, and a description of the output.
+

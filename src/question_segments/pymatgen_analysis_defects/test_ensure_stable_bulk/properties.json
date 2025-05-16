@@ -1,0 +1,10 @@
+{
+    "JSON_File_Name": "test_ensure_stable_bulk",
+    "properties": {
+        "GaN_stability_in_phase_diagram": {
+            "description": "Checks if the compound GaN is included in the stable entries of a phase diagram after ensuring stability.",
+            "format": "bool",
+            "value": "True"
+        }
+    }
+}

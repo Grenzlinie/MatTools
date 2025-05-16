@@ -1,0 +1,58 @@
+As a materials scientist, you are utilizing Pymatgen to write functions to calculate material properties. Here is what you need to do:
+- Calculate the following properties:
+    - `directory_map_length`: Checks that the directory map includes all charge states plus the bulk directory. The expected format is an integer.
+    - `transition_count`: Verifies the number of transition states calculated in the formation energy diagram. The expected format is an integer.
+
+If you need to read files or generate data, please refer to the following instructions:
+- Read or Generate Data:
+    - Access the files directory path at: `tool_source_code/pymatgen-analysis-defects/tests/test_files/`.
+    - Use the Pymatgen function to read the stable entries from the JSON file: 
+      ```python
+      from monty.serialization import loadfn
+      stable_entries_Mg_Ga_N = loadfn(file_path / "stable_entries_Mg_Ga_N.json")
+      ```
+    - Access the structure file path at: `tool_source_code/pymatgen-analysis-defects/tests/test_files/GaN.vasp`.
+    - Use the Pymatgen function to read the structure data:
+      ```python
+      from pymatgen.core import Structure
+      gan_struct = Structure.from_file(file_path / "GaN.vasp")
+      ```
+    - Generate the defect structure using:
+      ```python
+      from pymatgen.analysis.defects.core import PeriodicSite, Substitution
+      ga_site = gan_struct[0]
+      mg_site = PeriodicSite(Specie("Mg"), ga_site.frac_coords, gan_struct.lattice)
+      defect_Mg_Ga = Substitution(gan_struct, mg_site)
+      ```
+    - Use the Pymatgen function to create a FormationEnergyDiagram:
+      ```python
+      from pymatgen.analysis.defects.thermo import FormationEnergyDiagram
+      sc_dir = file_path / "Mg_Ga"
+      for q in [-1, 0, 1]:
+        qq.append(q)
+        dmap = {"bulk": sc_dir / "bulk_sc"}
+        dmap.update(zip(qq, map(lambda x: sc_dir / f"q={x}", qq)))
+        fed = FormationEnergyDiagram.with_directories(
+            directory_map=dmap,
+            defect=defect_Mg_Ga,
+            pd_entries=stable_entries_Mg_Ga_N,
+            dielectric=10,
+        )
+        trans = fed.get_transitions(fed.chempot_limits[1], x_min=-100, x_max=100)
+      directory_map_length = [MASK] # Replace [MASK] with the correct code to obtain the correct answer and return.
+      transition_count = [MASK] # Replace [MASK] with the correct code to obtain the correct answer and return.
+      ```
+
+All content is executed within the function, and the function does not require any input to output the result. The format of the function should follow these guidelines:
+- Write a Python function that:
+    - Reads the data from the provided file paths or generate data based on the description in the first section.
+    - Calculates all the properties mentioned above using Pymatgen, as well as basic Python methods or functions.
+    - Handles errors during property calculations such that if any property calculation fails, the corresponding property value is set to None, while other properties are still calculated and included in the output.
+    - Returns a dictionary where the property names are keys, and the calculated results are the values.
+
+- Ensure your function includes:
+    - Necessary imports (e.g., `from pymatgen.core import Structure`).
+    - Proper file handling or data generation code.
+    - Output in the form of a dictionary as specified above.
+    - A complete docstring with clear input parameters, data types, and a description of the output.
+

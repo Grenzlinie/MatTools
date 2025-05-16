@@ -1,0 +1,20 @@
+{
+    "JSON_File_Name": "test_vacancy_generators",
+    "properties": {
+        "defect_instance_type": {
+            "description": "Checks if the generated defect is an instance of the Vacancy class.",
+            "format": "bool",
+            "value": "True"
+        },
+        "vacancy_count_for_specific_species": {
+            "description": "Verifies the number of vacancies generated for a specific species, in this case, Gallium (Ga).",
+            "format": "int",
+            "value": "1"
+        },
+        "invalid_species_error": {
+            "description": "Ensures that a ValueError is raised when attempting to generate vacancies for a non-existent species, such as Xenon (Xe).",
+            "format": "bool",
+            "value": "True"
+        }
+    }
+}

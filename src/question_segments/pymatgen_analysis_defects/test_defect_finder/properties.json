@@ -1,0 +1,25 @@
+{
+    "JSON_File_Name": "test_defect_finder",
+    "properties": {
+        "vacancy_defect_distance": {
+            "description": "Distance between the guessed and actual fractional position of a vacancy defect in a supercell.",
+            "format": "float",
+            "value": "0.5"
+        },
+        "interstitial_defect_distance": {
+            "description": "Distance between the guessed and actual fractional position of an interstitial defect in a supercell.",
+            "format": "float",
+            "value": "0.5"
+        },
+        "anti_site_initial_distance": {
+            "description": "The initial distance between Ga and N atoms before exchange.",
+            "format": "float",
+            "value": "2"
+        },
+        "anti_site_defect_distance": {
+            "description": "The distance between the guessed anti-site defect position and the initial midpoint to verify the accuracy of the defect position.",
+            "format": "float",
+            "value": "0.5"
+        }
+    }
+}

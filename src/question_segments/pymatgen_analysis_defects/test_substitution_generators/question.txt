@@ -1,0 +1,28 @@
+As a materials scientist, you are utilizing Pymatgen to write functions to calculate material properties. Here is what you need to do:
+- Calculate the following properties:
+    - `defect_type`: Checks if all generated defects are of type Substitution. If so, return True. The format is a boolean.
+    - `replaced_atoms_set_1`: Verifies the set of atoms that have been substituted in the structure. Ga is replaced by Mg and Ca (Input parameters -> substitution = {"Ga": ["Mg", "Ca"]}). The format is a set. For example, `replaced_atoms = {"H", "He"}'.
+    - `replaced_atoms_set_2`: Verifies the set of atoms that have been substituted in the structure. Ga is replaced by Mg (Input parameters -> substitution = {"Ga": "Mg"}). The format is a set. For example, `replaced_atoms = {"H", "He"}'.
+
+If you need to read files or generate data, please refer to the following instructions:
+- Read or Generate Data:
+    - Access the structure file path at: `tool_source_code/pymatgen-analysis-defects/tests/test_files/`.
+    - Use the Pymatgen function:
+    ```python
+    from pymatgen.core import Structure
+    gan_struct = Structure.from_file(file_path / "GaN.vasp")
+    ``` to read the GaN structure.
+
+All content is executed within the function, and the function does not require any input to output the result. The format of the function should follow these guidelines:
+- Write a Python function that:
+    - Reads the data from the provided file paths or generates data based on the description in the first section.
+    - Calculates all the properties mentioned above using Pymatgen, as well as basic Python methods or functions.
+    - Handles errors during property calculations such that if any property calculation fails, the corresponding property value is set to None, while other properties are still calculated and included in the output.
+    - Returns a dictionary where the property names are keys, and the calculated results are the values.
+
+- Ensure your function includes:
+    - Necessary imports (e.g., `from pymatgen.core import Structure`).
+    - Proper file handling or data generation code.
+    - Output in the form of a dictionary as specified above.
+    - A complete docstring with clear input parameters, data types, and a description of the output.
+

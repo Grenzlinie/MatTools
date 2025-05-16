@@ -1,0 +1,64 @@
+As a materials scientist, you are utilizing Pymatgen to write functions to calculate material properties. Here is what you need to do:
+- Calculate the following properties:
+    - `vacancy_defect_distance`: Distance between the guessed and actual fractional position of a vacancy defect in a supercell. (float)
+    - `interstitial_defect_distance`: Distance between the guessed and actual fractional position of an interstitial defect in a supercell. (float)
+    - `anti_site_initial_distance`: The initial distance between Ga and N atoms before exchange. (float)
+    - `anti_site_defect_distance`: The distance between the guessed anti-site defect position and the initial midpoint to verify the accuracy of the defect position. (float)
+
+If you need to read files or generate data, please refer to the following instructions:
+- Read or Generate Data:
+    - Access the structure file path at: `tool_source_code/pymatgen-analysis-defects/tests/test_files/`.
+    - Use the Pymatgen function:
+    ```python
+    from pymatgen.core import IStructure
+    base = IStructure.from_file(file_path / "GaN.vasp")
+    ```
+    to read the structure data.
+    - Use the Pymatgen function:
+    ```python
+    from pymatgen.analysis.defects.finder import DefectSiteFinder
+    # Vacancy
+    sc = base * [2, 2, 2]
+    frac_pos_rm = sc.sites[9].frac_coords
+    sc.remove_sites([9])
+    finder = DefectSiteFinder()
+    frac_pos_guess = [MASK](sc, base) # Get the position of a native defect in the defect structure.
+    vacancy_defect_distance, _ = sc.lattice.[MASK](frac_pos_guess, frac_pos_rm)
+
+    # Interstitial
+    sc = base * [2, 2, 2]
+    frac_pos_insert = [0.666665, 0.333335, 0.31206]
+    sc.insert(0, "Ga", frac_pos_insert)
+    frac_pos_guess = [MASK](sc, base)
+    interstitial_defect_distance, _ = sc.lattice.[MASK](frac_pos_guess, frac_pos_insert)
+
+    # Anti-site
+    sc = base * [2, 2, 2]
+    Ga_pos = sc.sites[12].frac_coords
+    N_pos = sc.sites[16].frac_coords
+    anti_site_initial_distance, _ = sc.lattice.[MASK](Ga_pos, N_pos)
+    # swapping two sites that are close to each other
+    sc.remove_sites([16])
+    sc.remove_sites([12])
+    # have the distort slightly to the midpoint
+    mid_point = (N_pos + Ga_pos) / 2
+    sc.insert(0, "N", 0.99 * Ga_pos + 0.01 * mid_point)
+    sc.insert(0, "Ga", 0.99 * N_pos + 0.01 * mid_point)
+    frac_pos_guess = [MASK](sc, base)
+    anti_site_defect_distance, _ = sc.lattice.[MASK](frac_pos_guess, mid_point)
+    ```
+    to generate defects and calculate the distances. Replace [MASK] with the correct pymatgen method to get the results.
+
+All content is executed within the function, and the function does not require any input to output the result. The format of the function should follow these guidelines:
+- Write a Python function that:
+    - Reads the data from the provided file paths or generate data based on the description in the first section.
+    - Calculates all the properties mentioned above using Pymatgen, as well as basic Python methods or functions.
+    - Handles errors during property calculations such that if any property calculation fails, the corresponding property value is set to None, while other properties are still calculated and included in the output.
+    - Returns a dictionary where the property names are keys, and the calculated results are the values.
+
+- Ensure your function includes:
+    - Necessary imports (e.g., `from pymatgen.core import IStructure`).
+    - Proper file handling or data generation code.
+    - Output in the form of a dictionary as specified above.
+    - A complete docstring with clear input parameters, data types, and a description of the output.
+

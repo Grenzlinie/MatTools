@@ -1,0 +1,68 @@
+As a materials scientist, you are utilizing Pymatgen to write functions to calculate material properties. Here is what you need to do:
+- Calculate the following properties:
+    - `SRH_Coefficient`: The Shockley-Read-Hall (SRH) coefficient, which quantifies the rate of non-radiative recombination in semiconductors, calculated for different temperatures. The calculate parameters are (initial_state=hd0, final_state=hd1, defect_state=(138, 1, 1), T=[100, 200, 300], dE=1.0). The result format should be a list of float values.
+    - `RuntimeError_Check`: Verification that a RuntimeError is raised when attempting to calculate the SRH coefficient with an invalid defect state configuration. The invalid defect state configuration is (initial_state=hd0, final_state=hd1, defect_state=hd1.defect_band[-1], T=[100, 200, 300], dE=1.0, use_final_state_elph=True). Catch the error and assert if "WSWQ" exists in str(e.value). If so, return True. The format should be a boolean.
+
+If you need to read files or generate data, please refer to the following instructions:
+- Read or Generate Data:
+    - Access the test directory path at: `tool_source_code/pymatgen-analysis-defects/tests/test_files/`.
+    - Generate the harmonic defects hd0 and hd1 by:
+    ```python
+    from pathlib import Path
+    def test_dir():
+        return Path.cwd() / 'tool_source_code/pymatgen-analysis-defects/tests/test_files/'
+    def v_ga(test_dir):
+        res = dict()
+        for q1, q2 in [(0, -1), (-1, 0)]:
+            ccd_dir = test_dir / f"v_Ga/ccd_{q1}_{q2}"
+            vaspruns = [Vasprun(ccd_dir / f"{i}/vasprun.xml") for i in [0, 1, 2]]
+            wswq_dir = ccd_dir / "wswqs"
+            wswq_files = [f for f in wswq_dir.glob("WSWQ*")]
+            wswq_files.sort(
+                key=lambda x: int(x.name.split(".")[1])
+            )  # does stem work for non-zipped files?
+            wswqs = [WSWQ.from_file(f) for f in wswq_files]
+            # wswqs = [WSWQ.from_file(ccd_dir / "wswqs" / f"WSWQ.{i}.gz") for i in [0, 1, 2]]
+            res[(q1, q2)] = {
+                "vaspruns": vaspruns,
+                "procar": Procar(ccd_dir / "1/PROCAR"),
+                "wswqs": wswqs,
+            }
+        return res
+    def hd0(v_ga):
+        vaspruns = v_ga[(0, -1)]["vaspruns"]
+        procar = v_ga[(0, -1)]["procar"]
+        hd0 = HarmonicDefect.from_vaspruns(
+            vaspruns,
+            charge_state=0,
+            procar=procar,
+            store_bandstructure=True,
+        )
+        return hd0
+
+    def hd1(v_ga):
+        vaspruns = v_ga[(-1, 0)]["vaspruns"]
+        procar = v_ga[(-1, 0)]["procar"]
+        hd1 = HarmonicDefect.from_vaspruns(
+            vaspruns,
+            charge_state=1,
+            procar=procar,
+            store_bandstructure=True,
+        )
+        return hd1
+    ```
+    and execute `hd0.read_wswqs(test_dir / "v_Ga" / "ccd_0_-1" / "wswqs")` for check.
+
+All content is executed within the function, and the function does not require any input to output the result. The format of the function should follow these guidelines:
+- Write a Python function that:
+    - Reads the data from the provided file paths or generates data based on the description in the first section.
+    - Calculates all the properties mentioned above using Pymatgen, as well as basic Python methods or functions.
+    - Handles errors during property calculations such that if any property calculation fails, the corresponding property value is set to None, while other properties are still calculated and included in the output.
+    - Returns a dictionary where the property names are keys, and the calculated results are the values.
+
+- Ensure your function includes:
+    - Necessary imports (e.g., `from pymatgen.analysis.defects.ccd import get_SRH_coefficient`).
+    - Proper file handling or data generation code.
+    - Output in the form of a dictionary as specified above.
+    - A complete docstring with clear input parameters, data types, and a description of the output.
+

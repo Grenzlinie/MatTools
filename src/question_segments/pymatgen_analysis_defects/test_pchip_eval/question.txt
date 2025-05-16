@@ -1,0 +1,39 @@
+As a materials scientist, you are utilizing Pymatgen to write functions to calculate material properties. Here is what you need to do:
+- Calculate the following properties:
+    - `pchip_interpolation_integral`: The interpolated value(s) at the given x input(s) based on the adjusted piecewise cubic Hermite interpolant method. The format is a float value.
+
+If you need to read files or generate data, please refer to the following instructions:
+- Read or Generate Data:
+    - Generate a coarse grid of x-values and corresponding y-values using numpy. You should use the following code:
+    ```python
+    import numpy as np
+    x_c = np.linspace(0, 2, 5)
+    y_c = np.sin(x_c) + 1
+    ```
+    - Generate a fine grid of x-values for interpolation using numpy. You should use the following code:
+    ```python
+    xx = np.linspace(-3, 3, 1000)
+    ```
+    - Use Pymatgen function to perform the interpolation (Replace [MASK] with the correct pymatgen function to get result):
+    ```python
+    from pymatgen.analysis.defects.recombination import [MASK]
+    fx = [MASK](xx, x_coarse=x_c, y_coarse=y_c)
+    ```
+    - Calculate the interpolated values:
+    ```python
+    pchip_interpolation_integral = np.trapz(np.nan_to_num(fx), x=xx)
+    ```
+
+All content is executed within the function, and the function does not require any input to output the result. The format of the function should follow these guidelines:
+- Write a Python function that:
+    - Generates the data as described above.
+    - Calculates all the properties mentioned above using Pymatgen, as well as basic Python methods or functions.
+    - Handles errors during property calculations such that if any property calculation fails, the corresponding property value is set to None, while other properties are still calculated and included in the output.
+    - Returns a dictionary where the property name is the key, and the calculated result is the value.
+
+- Ensure your function includes:
+    - Necessary imports (e.g., `import numpy as np`).
+    - Proper data generation code.
+    - Output in the form of a dictionary as specified above.
+    - A complete docstring with a description of the output.
+

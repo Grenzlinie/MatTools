@@ -1,0 +1,10 @@
+{
+    "JSON_File_Name": "test_defect_entry_grouping",
+    "properties": {
+        "defect_name_consistency": {
+            "description": "Ensures that all defect entries in a group have the same defect name, indicating consistent grouping of defects.",
+            "format": "bool",
+            "value": "True"
+        }
+    }
+}

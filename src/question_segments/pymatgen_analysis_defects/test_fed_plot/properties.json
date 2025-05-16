@@ -1,0 +1,10 @@
+{
+    "JSON_File_Name": "test_fed_plot",
+    "properties": {
+        "formation_energy_diagram_defect_names": {
+            "description": "Checks if the names of the data series in the formation energy diagram match the expected defect names.",
+            "format": "set",
+            "value": "{\"Mg_Ga\", \"Mg_Ga:slope\"}"
+        }
+    }
+}

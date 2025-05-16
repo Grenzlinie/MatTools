@@ -1,0 +1,10 @@
+{
+    "JSON_File_Name": "test_freysoldt",
+    "properties": {
+        "freysoldt_correction_energy": {
+            "description": "The correction energy calculated using the Freysoldt method, which accounts for electrostatic interactions in charged defects within a periodic lattice.",
+            "format": "pytest.approx (float)",
+            "value": "0"
+        }
+    }
+}

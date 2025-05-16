@@ -1,0 +1,27 @@
+As a materials scientist, you are utilizing Pymatgen to write functions to calculate material properties. Here is what you need to do:
+- Calculate the following properties:
+    - `lower_envelope`: The lower envelope of a set of lines, representing the minimal boundary formed by the lines in a 2D space. The format is a list of tuples.
+    - `transitions`: The transition points where the lower envelope changes slope, indicating a change in the dominant line segment. The x value range is -5 to 2. The format is a list of tuples.
+
+If you need to read files or generate data, please refer to the following instructions:
+- Read or Generate Data:
+    - Generate a set of lines for the lower envelope calculation using the following list: `[[4, 12], [-1, 3], [-5, 4], [-2, 1], [3, 8], [-4, 14], [2, 12], [3, 8]]`.
+    - Use the Pymatgen functions:
+      ```python
+      from pymatgen.analysis.defects.thermo import get_lower_envelope, get_transitions
+      ```
+      to calculate the lower envelope and transitions.
+
+All content is executed within the function, and the function does not require any input to output the result. The format of the function should follow these guidelines:
+- Write a Python function that:
+    - Generates the data based on the description in the first section.
+    - Calculates all the properties mentioned above using Pymatgen, as well as basic Python methods or functions.
+    - Handles errors during property calculations such that if any property calculation fails, the corresponding property value is set to None, while other properties are still calculated and included in the output.
+    - Returns a dictionary where the property names are keys, and the calculated results are the values.
+
+- Ensure your function includes:
+    - Necessary imports (e.g., `from pymatgen.analysis.defects.thermo import get_lower_envelope, get_transitions`).
+    - Proper data generation code.
+    - Output in the form of a dictionary as specified above.
+    - A complete docstring with clear input parameters, data types, and a description of the output.
+

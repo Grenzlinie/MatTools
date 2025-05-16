@@ -1,0 +1,13 @@
+Defect generators.
+
+Functions
+generate_all_native_defects(host[, ...])	Generate all native defects.
+
+Classes
+AntiSiteGenerator([symprec, angle_tolerance])	Generator of all anti-site defects.
+ChargeInterstitialGenerator([...])	Generator of interstitiald defects.
+DefectGenerator()	Abstract class for a defect generator.
+InterstitialGenerator([min_dist])	Generator of interstitiald defects.
+SubstitutionGenerator([symprec, angle_tolerance])	Generator of substitutions for symmetry distinct sites in a structure.
+VacancyGenerator([symprec, angle_tolerance])	Generator for vacancy defects.
+VoronoiInterstitialGenerator([...])	Generator for interstitials based on a simple Voronoi.

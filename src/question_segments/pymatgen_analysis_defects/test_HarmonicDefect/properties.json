@@ -1,0 +1,25 @@
+{
+    "JSON_File_Name": "test_HarmonicDefect",
+    "properties": {
+        "defect_band_initial": {
+            "description": "The defect band structure for a harmonic defect, represented as a list of tuples indicating band index, spin, and occupancy.",
+            "format": "list of tuples",
+            "value": "[(138, 0, 1), (138, 1, 1)]"
+        },
+        "defect_band_from_directories": {
+            "description": "The defect band structure obtained from directories, confirming consistency with initial defect band structure.",
+            "format": "list of tuples",
+            "value": "[(138, 0, 1), (138, 1, 1)]"
+        },
+        "spin_index": {
+            "description": "The spin index of the defect band, indicating the spin channel being considered.",
+            "format": "int",
+            "value": "1"
+        },
+        "non_unique_spin_error": {
+            "description": "Error raised when the defect band has non-unique spin indices, ensuring spin consistency.",
+            "format": "bool",
+            "value": "True"
+        }
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "JSON_File_Name": "test_wswq_slope",
+    "properties": {
+        "wswq_slope_positive_distortion": {
+            "description": "The slope of the WSWQ data when the distortion values are positive, indicating a change in the material's electronic structure.",
+            "format": "np.allclose (approximate comparison of arrays)",
+            "value": "array([[2., 2., 2., 2., 2.], [2., 2., 2., 2., 2.], [2., 2., 2., 2., 2.]])"
+        },
+        "wswq_slope_negative_distortion": {
+            "description": "The slope of the WSWQ data when the distortion values are negative, reflecting a different change in the material's electronic structure.",
+            "format": "np.allclose (approximate comparison of arrays)",
+            "value": "array([[1., 1., 1., 1., 1.], [1., 1., 1., 1., 1.], [1., 1., 1., 1., 1.]])"
+        }
+    }
+}

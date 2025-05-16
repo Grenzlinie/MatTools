@@ -1,0 +1,10 @@
+{
+    "JSON_File_Name": "test_get_vibronic_matrix_elements",
+    "properties": {
+        "vibronic_matrix_elements": {
+            "description": "The vibronic matrix elements represent the coupling between electronic states and vibrational modes, calculated using the overlap of vibrational wavefunctions.",
+            "format": "np.allclose (list of float values for approximate comparison)",
+            "value": "[0.0, 3984589.0407885523, 0.0, 0.0, 0.0]"
+        }
+    }
+}

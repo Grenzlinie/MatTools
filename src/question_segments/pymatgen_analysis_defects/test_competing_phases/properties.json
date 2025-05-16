@@ -1,0 +1,23 @@
+{
+    "JSON_File_Name": "test_competing_phases",
+    "properties": {
+        "competing_phases_at_chempot_limits": {
+            "description": "This property tests the set of competing phases at specific chemical potential limits in a formation energy diagram.",
+            "format": "dict",
+            "value": {
+                "Mg:-1.50,Ga:-1.75,N:0.00": [
+                    "N2",
+                    "Mg3N2"
+                ],
+                "Mg:-0.35,Ga:-0.03,N:-1.71": [
+                    "Mg2Ga5",
+                    "Mg3N2"
+                ],
+                "Mg:-0.44,Ga:0.00,N:-1.75": [
+                    "Mg2Ga5",
+                    "Ga"
+                ]
+            }
+        }
+    }
+}

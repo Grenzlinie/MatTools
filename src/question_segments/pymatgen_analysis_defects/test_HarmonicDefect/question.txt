@@ -1,0 +1,64 @@
+As a materials scientist, you are utilizing Pymatgen to write functions to calculate material properties. Here is what you need to do:
+- Calculate the following properties:
+    - `defect_band_initial`: The defect band structure for a harmonic defect, represented as a list of tuples indicating band index, spin, and occupancy. Format: list of tuples.
+    - `defect_band_from_directories`: The defect band structure obtained from directories, confirming consistency with initial defect band structure. Format: list of tuples.
+    - `spin_index`: The spin index of the defect band, indicating the spin channel being considered. Format: int.
+    - `non_unique_spin_error`: Error raised when the defect band has non-unique spin indices. If "Spin index" in str(e.value), the value of this property is True. Format: bool.
+
+If you need to read files or generate data, please refer to the following instructions:
+- Read or Generate Data:
+    - Access the test directory path at: `tool_source_code/pymatgen-analysis-defects/tests/test_files/`.
+    - Use the Pymatgen function to read the necessary data:
+      ```python
+      from pymatgen.io.vasp.outputs import Vasprun, Procar
+      from pymatgen.analysis.defects.ccd import HarmonicDefect
+      from pathlib import Path
+
+      test_dir = Path.cwd() / 'tool_source_code/pymatgen-analysis-defects/tests/test_files/'
+      ccd_dir = test_dir / "v_Ga/ccd_0_-1"
+      vaspruns = [Vasprun(ccd_dir / f"{i}/vasprun.xml") for i in [0, 1, 2]]
+      procar = Procar(ccd_dir / "1/PROCAR")
+      # for 'defect_band_initial'
+      hd0 = HarmonicDefect.from_vaspruns(
+          vaspruns,
+          charge_state=0,
+          procar=procar,
+          store_bandstructure=True,
+      )
+      # for 'defect_band_from_directories'
+      hd0p = HarmonicDefect.from_directories(
+        directories=[test_dir / "v_Ga" / "ccd_0_-1" / str(i) for i in range(3)],
+        charge_state=0,
+      )
+      # for 'spin_index'
+      hd2 = HarmonicDefect.from_vaspruns(
+        vaspruns, charge_state=0, procar=procar, defect_band=((139, 0, 1), (139, 1, 1))
+      )
+      # for 'non_unique_spin_error'
+      vaspruns = [Vasprun(ccd_dir / f"{i}/vasprun.xml") for i in [0, 1, 2]]
+      procar = Procar(ccd_dir / "1/PROCAR")
+      try:
+        hd3 = HarmonicDefect.from_vaspruns(
+        vaspruns,
+        charge_state=0,
+        procar=procar,
+        defect_band=((139, 0, 1), (139, 1, 0)),
+        )
+        hd3.spin
+      except ValueError as e:
+        # Complete the code to accomplish the task. 
+      ```
+
+All content is executed within the function, and the function does not require any input to output the result. The format of the function should follow these guidelines:
+- Write a Python function that:
+    - Reads the data from the provided file paths or generate data based on the description in the first section.
+    - Calculates all the properties mentioned above using Pymatgen, as well as basic Python methods or functions.
+    - Handles errors during property calculations such that if any property calculation fails, the corresponding property value is set to None, while other properties are still calculated and included in the output.
+    - Returns a dictionary where the property names are keys, and the calculated results are the values.
+
+- Ensure your function includes:
+    - Necessary imports (e.g., `from pymatgen.io.vasp.outputs import Vasprun`).
+    - Proper file handling or data generation code.
+    - Output in the form of a dictionary as specified above.
+    - A complete docstring with clear input parameters, data types, and a description of the output.
+

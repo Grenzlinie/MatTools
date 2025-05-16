@@ -1,0 +1,10 @@
+{
+    "JSON_File_Name": "test_get_local_extrema",
+    "properties": {
+        "local_extrema_positions": {
+            "description": "List of fractional coordinates corresponding to local extrema.",
+            "format": "np.allclose (list of fractional coordinates)",
+            "value": "[[0, 0, 0], [0.25, 0.25, 0.25], [0.5, 0.5, 0.5], [0.75, 0.75, 0.75]]"
+        }
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "JSON_File_Name": "test_formation_energy_diagram_shape_fixed",
+    "properties": {
+        "formation_energy_diagram_x_coordinates": {
+            "description": "Ensures that the x-coordinates of the formation energy diagram remain consistent across different chemical potential limits. The reference x-coordinates is [0.0, 0.4230302543993645, 4.302142813614765, 5.0] (uses np.allclose to compare). The x-coordinates at each chemical potential limit point should be equal to the reference.",
+            "format": "bool",
+            "value": "True"
+        },
+        "formation_energy_diagram_y_coordinates": {
+            "description": "Ensures that the y-coordinates of the formation energy diagram, adjusted by their minimum value, remain consistent across different chemical potential limits.  The reference y-coordinates is [5.274826931985871, 5.274826931985871, 1.3957143727704704, 0.0] (uses np.allclose to compare). The y-coordinates at each chemical potential limit point should be equal to the reference. ",
+            "format": "bool",
+            "value": "True"
+        }
+    }
+}

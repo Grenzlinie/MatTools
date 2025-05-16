@@ -1,0 +1,62 @@
+As a materials scientist, you are utilizing Pymatgen to write functions to calculate material properties. Here is what you need to do:
+- Calculate the following properties:
+    - `localized_bands_set_1`: Set of band indices identified as the most localized states in the band structure for a specific defect configuration. The format is a set.
+    - `localized_bands_set_2`: Set of band indices identified as the most localized states in the band structure for another defect configuration with a specified band window. The format is a set.
+
+If you need to read files or generate data, please refer to the following instructions:
+- Read or Generate Data:
+    - Access the directory containing the necessary files at: `tool_source_code/pymatgen-analysis-defects/tests/test_files/`.
+    - Use the Pymatgen function to read the Vasprun and Procar files:
+    ```python
+    from pathlib import Path
+    from pymatgen.io.vasp.outputs import WSWQ, Procar, Vasprun
+    from pymatgen.analysis.defects.utils import [MASK]
+    def get_v_ga(test_dir):
+        res = dict()
+        for q1, q2 in [(0, -1), (-1, 0)]:
+            ccd_dir = test_dir / f"v_Ga/ccd_{q1}_{q2}"
+            vaspruns = [Vasprun(ccd_dir / f"{i}/vasprun.xml") for i in [0, 1, 2]]
+            wswq_dir = ccd_dir / "wswqs"
+            wswq_files = [f for f in wswq_dir.glob("WSWQ*")]
+            wswq_files.sort(
+                key=lambda x: int(x.name.split(".")[1])
+            )  # does stem work for non-zipped files?
+            wswqs = [WSWQ.from_file(f) for f in wswq_files]
+            # wswqs = [WSWQ.from_file(ccd_dir / "wswqs" / f"WSWQ.{i}.gz") for i in [0, 1, 2]]
+            res[(q1, q2)] = {
+                "vaspruns": vaspruns,
+                "procar": Procar(ccd_dir / "1/PROCAR"),
+                "wswqs": wswqs,
+            }
+        return res
+    v_ga = get_v_ga(Path("tool_source_code/pymatgen-analysis-defects/tests/test_files/"))
+    vaspruns = v_ga[(0, -1)]["vaspruns"]
+    procar = v_ga[(0, -1)]["procar"]
+    vr = vaspruns[1]
+    bs = vr.get_band_structure()
+    localized_bands_set_1 = set()
+    for iband, _ikpt, _ispin, _val in [MASK](bs, procar=procar):
+        localized_bands_set_1.add(iband)
+    vaspruns = v_ga[(-1, 0)]["vaspruns"]
+    procar = v_ga[(-1, 0)]["procar"]
+    vr = vaspruns[1]
+    bs = vr.get_band_structure()
+    localized_bands_set_2 = set()
+    for iband, _ikpt, _ispin, _val in [MASK](bs, procar=procar, band_window=100):
+        localized_bands_set_2.add(iband)
+    ```
+    # Replace [MASK] with the correct pymatgen function to get results.
+
+All content is executed within the function, and the function does not require any input to output the result. The format of the function should follow these guidelines:
+- Write a Python function that:
+    - Reads the data from the provided file paths.
+    - Calculates all the properties mentioned above using Pymatgen, as well as basic Python methods or functions.
+    - Handles errors during property calculations such that if any property calculation fails, the corresponding property value is set to None, while other properties are still calculated and included in the output.
+    - Returns a dictionary where the property names are keys, and the calculated results are the values.
+
+- Ensure your function includes:
+    - Necessary imports (e.g., `from pymatgen.io.vasp.outputs import Vasprun, Procar`).
+    - Proper file handling or data generation code.
+    - Output in the form of a dictionary as specified above.
+    - A complete docstring with clear input parameters, data types, and a description of the output.
+

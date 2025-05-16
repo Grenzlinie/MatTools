@@ -1,0 +1,15 @@
+{
+    "JSON_File_Name": "test_SRHCapture",
+    "properties": {
+        "SRH_Coefficient": {
+            "description": "The Shockley-Read-Hall (SRH) coefficient, which quantifies the rate of non-radiative recombination in semiconductors, calculated for different temperatures. The calculate parameters are (initial_state=hd0, final_state=hd1, defect_state=(138, 1, 1), T=[100, 200, 300], dE=1.0). The result format should be a list of float values.",
+            "format": "np.allclose (list of float values for approximate comparison)",
+            "value": "[1.89187260e-34, 6.21019152e-33, 3.51501688e-31]"
+        },
+        "RuntimeError_Check": {
+            "description": "Verification that a RuntimeError is raised when attempting to calculate the SRH coefficient with an invalid defect state configuration. The invalid defect state configuration is (initial_state=hd0, final_state=hd1, defect_state=hd1.defect_band[-1], T=[100, 200, 300], dE=1.0, use_final_state_elph=True). Catch the error and assert if 'WSWQ' exists in str(e.value). If so, return True. The format should be a boolean.",
+            "format": "bool",
+            "value": "True"
+        }
+    }
+}

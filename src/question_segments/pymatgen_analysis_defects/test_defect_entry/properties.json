@@ -1,0 +1,20 @@
+{
+    "JSON_File_Name": "test_defect_entry",
+    "properties": {
+        "freysoldt_correction": {
+            "description": "The Freysoldt correction applied to the defect entry, which accounts for electrostatic interactions in charged defect calculations.",
+            "format": "np.allclose",
+            "value": "0.00"
+        },
+        "potential_alignment_consistency": {
+            "description": "Consistency check for potential alignment data between different sources (vr1 and vr2). The values vr1 and vr2 are obtained from the planar averaged electrostatic potential data used in the Freysoldt correction. Specifically, vr1 is calculated from the 'pot_plot_data' found within plot_data[0][1], while vr2 is derived from a similar data structure stored in defect_entries[0].corrections_metadata['freysoldt']['plot_data'][1]. Both vr1 and vr2 represent the potential profile along the defect axis and are used to verify consistency in the correction methodology across different data sources.",
+            "format": "bool",
+            "value": "True"
+        },
+        "energy_difference": {
+            "description": "The energy difference between the defect supercell and the bulk supercell, used to calculate the defect formation energy.",
+            "format": "np.allclose",
+            "value": "2.8381543899999997"
+        }
+    }
+}

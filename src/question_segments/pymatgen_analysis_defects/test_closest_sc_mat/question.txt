@@ -1,0 +1,47 @@
+As a materials scientist, you are utilizing Pymatgen to write functions to calculate material properties. Here is what you need to do:
+- Calculate the following properties:
+    - `supercell_structure_matching`: Checks if the generated supercell structure closely matches a reference supercell matrix by comparing the minimum distance of sorted results. The format should be a boolean.
+    - `closest_supercell_matrix`: Verifies that the closest supercell matrix obtained from the unit cell and vacancy supercell structures matches the reference supercell matrix. The format is a list of lists of floats.
+
+If you need to read files or generate data, please refer to the following instructions:
+- Read or Generate Data:
+    - Access the structure file path at: `tool_source_code/pymatgen-analysis-defects/tests/test_files/`.
+    - Use the Pymatgen function ```python\nfrom monty.serialization import loadfn\nsi_o_structs = loadfn(file_path / "Si-O_structs.json")\n``` to read the structure data.
+    - Replace the [MASK] in the following code to calculate the properties and write the answer:
+    ```python
+    ref_sc_mat = [[2, 1, 2], [2, 0, 3], [2, 1, 1]]
+    vg = VacancyGenerator()
+    def get_vac(s, sc_mat):
+        vac = next(vg.generate(s, rm_species=["O"]))
+        return vac.get_supercell_structure(sc_mat=sc_mat)
+
+    def check_uc(uc_struct, sc_mat) -> None:
+        vac_sc = get_vac(uc_struct, sc_mat)
+        sorted_results = get_closest_sc_mat(uc_struct, vac_sc, debug=True)
+        min_dist = sorted_results[0][0]
+        close_mats = [r[2] for r in sorted_results if r[0] < min_dist * 1.1]
+        is_matched = [np.allclose([MASK], x) for x in [MASK]] # Replace [MASK] with different variables to complete the code.
+        assert any(is_matched)
+
+    for s in si_o_structs:
+        check_uc(s, ref_sc_mat)
+    [MASK] # If all checks pass, supercell_stucture_matching is true.
+
+    uc_struct = si_o_structs[0]
+    vac_struct = get_vac(uc_struct, ref_sc_mat)
+    closest_supercell_matrix = get_closest_sc_mat(uc_struct=[MASK], sc_struct=[MASK], debug=False) # Replace [MASK] with different variables to complete the code.
+    ```
+
+All content is executed within the function, and the function does not require any input to output the result. The format of the function should follow these guidelines:
+- Write a Python function that:
+    - Reads the data from the provided file paths or generates data based on the description in the first section.
+    - Calculates all the properties mentioned above using Pymatgen, as well as basic Python methods or functions.
+    - Handles errors during property calculations such that if any property calculation fails, the corresponding property value is set to None, while other properties are still calculated and included in the output.
+    - Returns a dictionary where the property names are keys, and the calculated results are the values.
+
+- Ensure your function includes:
+    - Necessary imports (e.g., `from pymatgen.analysis.defects.generators import VacancyGenerator`).
+    - Proper file handling or data generation code.
+    - Output in the form of a dictionary as specified above.
+    - A complete docstring with clear input parameters, data types, and a description of the output.
+

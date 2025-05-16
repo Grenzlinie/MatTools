@@ -1,0 +1,15 @@
+{
+    "JSON_File_Name": "test_formation_from_directory",
+    "properties": {
+        "directory_map_length": {
+            "description": "Checks that the directory map includes all charge states plus the bulk directory.",
+            "format": "int",
+            "value": 4
+        },
+        "transition_count": {
+            "description": "Verifies the number of transition states calculated in the formation energy diagram.",
+            "format": "int",
+            "value": 4
+        }
+    }
+}

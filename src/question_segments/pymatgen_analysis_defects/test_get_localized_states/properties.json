@@ -1,0 +1,15 @@
+{
+    "JSON_File_Name": "test_get_localized_states",
+    "properties": {
+        "localized_bands_set_1": {
+            "description": "Set of band indices identified as the most localized states in the band structure for a specific defect configuration",
+            "format": "set",
+            "value": "{138}"
+        },
+        "localized_bands_set_2": {
+            "description": "Set of band indices identified as the most localized states in the band structure for another defect configuration with a specified band window.",
+            "format": "set",
+            "value": "{75, 77}"
+        }
+    }
+}

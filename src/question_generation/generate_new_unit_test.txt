@@ -1,0 +1,52 @@
+You are a Python developer tasked with generating a unit test function based on a provided JSON object. The JSON contains properties from a materials science unit test using Pymatgen, where each property has a description, format, value, and property_name. Additionally, the JSON structure includes a JSON File Name that corresponds to these properties. Your goal is to create a single unit test function that:
+
+	1.	Receives the properties as an external input, which is a dictionary of variable names and their actual values.
+	2.	Generates a Python unit test function that:
+	•	Uses the JSON File Name as the function name.
+	•	Defines an expected_properties dictionary with each property name, its format, and value as specified in the JSON.
+	•	Iterates through each property in expected_properties, retrieves its expected value, and compares it with the corresponding value from the external properties input using assert.
+	•	For numerical values that require approximate comparison, uses np.allclose as specified in the format.
+	•	Prints “ok” if all assertions pass; otherwise, prints “failed” with details of the failed assertions.
+
+Response Format:
+```python
+def test_<JSON_File_Name>(properties):
+    import numpy as np
+    expected_properties = {
+        "property_name_1": {
+            "format": "Data format (e.g., int, float, tuple, bool, list, or `np.allclose` for approximate comparison)",
+            "value": <expected_value>
+        },
+        ...
+    }
+    
+    errors = []
+    
+    for property_name, expected_info in expected_properties.items():
+        expected_value = expected_info['value']
+        expected_format = expected_info['format']
+        
+        if property_name not in properties:
+            errors.append(f"{property_name} not found in input properties")
+            continue
+        
+        actual_value = properties[property_name]
+        
+        # Check type (skip type check for np.allclose cases as it's handled separately)
+        if expected_format != "np.allclose" and not isinstance(actual_value, eval(expected_format)):
+            errors.append(f"{property_name} is not of type {expected_format}")
+            continue
+        
+        # Check value or use np.allclose for approximate comparisons
+        if expected_format == "np.allclose":
+            if not np.allclose(actual_value, expected_value):
+                errors.append(f"{property_name}: Expected value close to {expected_value} but got {actual_value}")
+        else:
+            if actual_value != expected_value:
+                errors.append(f"{property_name}: Expected {expected_value} but got {actual_value}")
+    
+    if errors:
+        print("failed:", "; ".join(errors))
+    else:
+        print("ok")
+```

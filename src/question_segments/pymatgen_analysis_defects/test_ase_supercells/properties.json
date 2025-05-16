@@ -1,0 +1,15 @@
+{
+    "JSON_File_Name": "test_ase_supercells",
+    "properties": {
+        "supercell_size_constraint": {
+            "description": "Ensures that the generated supercell has a number of sites within the specified range [4, 8].",
+            "format": "bool",
+            "value": "True"
+        },
+        "supercell_generation_failure": {
+            "description": "Tests that a RuntimeError is raised when the minimum length constraint cannot be satisfied for supercell generation. Here you need to change the minimum length of the smallest supercell lattice vector 1 to 10 in the code below and still use _ase_cubic to get the matrix and supercell. The format is a boolean. If the error is raised and caught, return True.",
+            "format": "bool",
+            "value": "True"
+        }
+    }
+}

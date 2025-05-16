@@ -1,0 +1,24 @@
+{
+    "JSON_File_Name": "test_dielectric_func",
+    "properties": {
+        "inter_vbm_integral": {
+            "description": "Integral of the imaginary part of the dielectric function at the valence band maximum (VBM) over a specified energy range. The ranges are eps_vbm[:100] and energy[:100]. energy: The energy grid representing the dielectric function. eps_vbm: The dielectric function from the VBM to the defect state. Format: float.",
+            "format": "np.allclose (approximate float comparison)",
+            "value": "6.31"
+        },
+        "inter_cbm_integral": {
+            "description": "Integral of the imaginary part of the dielectric function at the conduction band minimum (CBM) over a specified energy range. The ranges are eps_cbm[:100] and energy[:100]. energy: The energy grid representing the dielectric function. eps_cbm: The dielectric function from the defect state to the CBM. Format: float.",
+            "value": "0.27"
+        },
+        "optical_transitions_dataframe_type": {
+            "description": "Verification that the first return value of plotting optical transitions is a pandas DataFrame. Format: boolean.",
+            "format": "bool",
+            "value": "True"
+        },
+        "optical_transitions_dataframe_length": {
+            "description": "Number of entries in the DataFrame df. Format: int.",
+            "format": "int",
+            "value": "11"
+        }
+    }
+}

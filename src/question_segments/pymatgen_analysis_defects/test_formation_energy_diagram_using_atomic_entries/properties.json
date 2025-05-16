@@ -1,0 +1,10 @@
+{
+    "JSON_File_Name": "test_formation_energy_diagram_using_atomic_entries",
+    "properties": {
+        "chemical_potential_limits_count": {
+            "description": "The number of chemical potential limits in the formation energy diagram, indicating the number of distinct chemical environments considered.",
+            "format": "int",
+            "value": 3
+        }
+    }
+}

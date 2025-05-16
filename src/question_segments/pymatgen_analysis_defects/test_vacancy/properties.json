@@ -1,0 +1,55 @@
+{
+    "JSON_File_Name": "test_vacancy",
+    "properties": {
+        "symmetry_equivalence": {
+            "description": "Checks if two vacancy defects are symmetry equivalent.",
+            "format": "bool",
+            "value": "True"
+        },
+        "vacancy_string_representation": {
+            "description": "String representation of the vacancy defect, indicating the element and site index.",
+            "format": "str",
+            "value": "Ga Vacancy defect at site #0"
+        },
+        "vacancy_oxidation_state": {
+            "description": "Oxidation state of the vacancy defect.",
+            "format": "int",
+            "value": "-3"
+        },
+        "vacancy_charge_states": {
+            "description": "Possible charge states for the vacancy defect.",
+            "format": "list",
+            "value": "[-4, -3, -2, -1, 0, 1]"
+        },
+        "vacancy_multiplicity": {
+            "description": "Multiplicity of the vacancy defect, indicating the number of symmetry-equivalent sites.",
+            "format": "int",
+            "value": "2"
+        },
+        "vacancy_supercell_formula": {
+            "description": "Chemical formula of the supercell structure containing the vacancy defect.",
+            "format": "str",
+            "value": "Ga63 N64"
+        },
+        "vacancy_name": {
+            "description": "Name of the vacancy defect, typically indicating the element involved.",
+            "format": "str",
+            "value": "v_Ga"
+        },
+        "vacancy_self_equivalence": {
+            "description": "Checks if the vacancy defect is equivalent to itself.",
+            "format": "bool",
+            "value": "True"
+        },
+        "vacancy_element_changes": {
+            "description": "Changes in the number of elements due to the vacancy defect.",
+            "format": "dict",
+            "value": "{Element('Ga'): -1}"
+        },
+        "vacancy_latex_name": {
+            "description": "LaTeX formatted name of the vacancy defect for scientific documentation.",
+            "format": "str",
+            "value": "v$_{\\rm Ga}$"
+        }
+    }
+}

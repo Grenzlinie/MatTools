@@ -1,0 +1,95 @@
+# Prompts 模板
+SYSTEM_PROMPT = (
+"You are an assistant for code generation tasks. Use the following retrieved contents to answer the user’s question.\n"
+)
+USER_PROMPT = (
+"**Question**:\n{question}\n\n"
+"**Retrieved code segments from helper**:\n{retrieved_code_segments}\n\n"
+"**Answer format**:\n"
+"Please make sure the response is enclosed within `<answer>`, `<code>` and `<name>` tags. Follow this example format:\n\n"
+"<answer>\n"
+"<code>\n```python\n# The generated function code\ndef example_function():\n    pass\n```\n</code>\n"
+"<name>name_of_generated_function</name>\n"
+"</answer>"
+)
+USER_PROMPT_DOC = (
+"**Question**:\n{question}\n\n"
+"**Retrieved code documents from helper**:\n{retrieved_code_documents}\n\n"
+"**Answer format**:\n"
+"Please make sure the response is enclosed within `<answer>`, `<code>` and `<name>` tags. Follow this example format:\n\n"
+"<answer>\n"
+"<code>\n```python\n# The generated function code\ndef example_function():\n    pass\n```\n</code>\n"
+"<name>name_of_generated_function</name>\n"
+"</answer>"
+)
+USER_PROMPT_LLM_DOC = (
+"**Question**:\n{question}\n\n"
+"**Retrieved code documents from helper**:\n{retrieved_code_documents}\n\n"
+"***Notes on documents usage***\n"
+"1. When attempting to load a file, do not use the file path from the retrieved documents, be sure to use the path provided in the question.\n"
+"2. If the question provides some code, the code provided in the question must be used in the generated function.\n\n"
+"**Answer format**:\n"
+"Please make sure the response is enclosed within `<answer>`, `<code>` and `<name>` tags. Follow this example format:\n\n"
+"<answer>\n"
+"<code>\n```python\n# The generated function code\ndef example_function():\n    pass\n```\n</code>\n"
+"<name>name_of_generated_function</name>\n"
+"</answer>"
+)
+
+FORMAT_CHECKER_PROMPT = (
+"Here is your task:\n"
+"1. Please check if the generated code is enclosed within the `<answer>`, `<code>`, and `<name>` tags:\n"
+"<answer>\n"
+"<code>\n```python\n# The generated function code\ndef example_function():\n    pass\n```\n</code>\n"
+"<name>name_of_generated_function</name>\n"
+"</answer>\n\n"
+"If the code does not conform to this format, please revise it accordingly.\n"
+"2. Example usages include statements like `result = example_function()` or `print(example_function())`, "
+"which should be removed. The final code should contain only the function definition without any example calls or comments.\n\n"
+"If the format is correct and no modifications are needed, return the generated code in the same format as shown above.\n\n"
+"Otherwise, please make the necessary changes and return the corrected code in the same format as shown above.\n\n"
+"Return only the corrected code in the specified format without any additional discussion, explanation, or commentary.\n\n"
+"**Generated code:**\n{generated_code}"
+)
+
+CRITICAL_FEEDBACK_PROMPT = (
+"You're a critical feedback agent. Provide feedback on the generated code.\n"
+"The original question is as follows:\n"
+"{question}\n\n"
+"The generated code is as follows:\n"
+"{generated_code}\n\n"
+"The runtime output of the code is as follows:\n"
+"{runtime_output}\n\n"
+"Please provide feedback on the generated code.\n"
+"The goal is to ensure the runtime output is a dictionary and all values in the dictionary are not None, "
+"which means the code has been successfully executed.\n"
+"If the code is correct, please provide positive feedback. If the code is incorrect, please provide constructive feedback and summarize the successful code that can solve the problem in the generated code.\n"
+"After your code feedback, please identify and list specific information or knowledge that would be helpful to retrieve "
+"for improving the code further. This should include relevant documentation, examples, or reference materials that "
+"a Retrieval Augmented Generation (RAG) system could provide.\n"
+"Your answer format should be as follows:\n"
+"<think>Your thoughts on the code</think>\n"
+"<feedback>Your feedback on the code</feedback>\n"
+"<next_rag_retrieval>\n"
+"- List specific documentation, APIs, or examples that would be helpful to retrieve\n"
+"- Include specific topics that would improve code implementation\n"
+"- Mention any libraries, functions, or patterns that would be beneficial to reference\n"
+"</next_rag_retrieval>"
+)
+
+CRITICAL_FEEDBACK_FORMART_CHECKER_PROMPT = (
+"Here is your task:\n"
+"1. Please check if the content below is enclosed within the `<think>`, `<feedback>`, and `<next_rag_retrieval>` tags:\n"
+"<think>Your thoughts on the code</think>\n"
+"<feedback>Your feedback on the code</feedback>\n"
+"<next_rag_retrieval>\n"
+"- List specific documentation, APIs, or examples that would be helpful to retrieve\n"
+"- Include specific topics that would improve code implementation\n"
+"- Mention any libraries, functions, or patterns that would be beneficial to reference\n"
+"</next_rag_retrieval>"
+"2. If the content does not conform to this format, please revise it accordingly.\n"
+"3. If the format is correct and no modifications are needed, return the content in the same format as shown above.\n\n"
+"Otherwise, please make the necessary changes and return the corrected content in the same format as shown above.\n\n"
+"Return only the corrected content in the specified format without any additional discussion, explanation, or commentary.\n\n"
+"**Content:**\n{content}"
+)

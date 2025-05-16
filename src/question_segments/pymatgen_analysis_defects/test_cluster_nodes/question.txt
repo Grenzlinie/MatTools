@@ -1,0 +1,43 @@
+As a materials scientist, you are utilizing Pymatgen to write functions to calculate material properties. Here is what you need to do:
+- Calculate the following properties:
+    - `clustered_positions`: Cluster nodes that are too close together using hiercharcal clustering. Format: a list of lists of floats.
+
+If you need to read files or generate data, please refer to the following instructions:
+- Read or Generate Data:
+    - Access the structure file path at: `tool_source_code/pymatgen-analysis-defects/tests/test_files/`.
+    - Use the Pymatgen function:
+    ```python
+    from pymatgen.core import Structure
+    gan_struct = Structure.from_file(file_path / "GaN.vasp")
+    ```
+    - Use the Pymatgen function:
+    ```python
+    from pymatgen.analysis.defects.utils import [MASK]
+    frac_pos = [
+        [0, 0, 0],
+        [0.25, 0.25, 0.25],
+        [0.5, 0.5, 0.5],
+        [0.75, 0.75, 0.75],
+    ]
+    added = [
+        [0.0002, 0.0001, 0.0001],
+        [0.0002, 0.0002, 0.0003],
+        [0.25001, 0.24999, 0.24999],
+        [0.25, 0.249999, 0.250001],
+    ]
+    clustered_positions = sorted([MASK](frac_pos + added, gan_struct.lattice).tolist()) # replace [MASK] with the correct pymatgen function to get the result.
+    ```
+
+All content is executed within the function, and the function does not require any input to output the result. The format of the function should follow these guidelines:
+- Write a Python function that:
+    - Reads the data from the provided file paths or generate data based on the description in the first section.
+    - Calculates all the properties mentioned above using Pymatgen, as well as basic Python methods or functions.
+    - Handles errors during property calculations such that if any property calculation fails, the corresponding property value is set to None, while other properties are still calculated and included in the output.
+    - Returns a dictionary where the property names are keys, and the calculated results are the values.
+
+- Ensure your function includes:
+    - Necessary imports (e.g., `from pymatgen.core import Structure`).
+    - Proper file handling or data generation code.
+    - Output in the form of a dictionary as specified above.
+    - A complete docstring with clear input parameters, data types, and a description of the output.
+

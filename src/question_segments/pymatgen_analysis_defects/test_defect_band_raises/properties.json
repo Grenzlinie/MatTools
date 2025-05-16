@@ -1,0 +1,15 @@
+{
+    "JSON_File_Name": "test_defect_band_raises",
+    "properties": {
+        "defect_band_index_mismatch": {
+            "description": "Checks if a ValueError is raised when the defect band indices are mismatched.",
+            "format": "str",
+            "value": "Raises ValueError"
+        },
+        "defect_spin_index_mismatch": {
+            "description": "Checks if a ValueError is raised when the defect spin indices are mismatched.",
+            "format": "str",
+            "value": "Raises ValueError"
+        }
+    }
+}

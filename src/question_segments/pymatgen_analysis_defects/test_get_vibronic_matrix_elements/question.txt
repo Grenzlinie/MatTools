@@ -1,0 +1,37 @@
+As a materials scientist, you are utilizing Pymatgen to write functions to calculate material properties. Here is what you need to do:
+- Calculate the following properties:
+    - `vibronic_matrix_elements`: The vibronic matrix elements represent the coupling between electronic states and vibrational modes, calculated using the overlap of vibrational wavefunctions. The format is a list of float values.
+
+If you need to read files or generate data, please refer to the following instructions:
+- Read or Generate Data:
+    - Use the Pymatgen function:
+    ```python
+    import itertools
+    import numpy as np
+    from pymatgen.analysis.defects.recombination import [MASK], [MASK]
+    # precompute values of the overlap
+    dQ, omega_i, omega_f = 0, 0.2, 0.2
+    Ni, Nf = 5, 5
+    ovl = np.zeros((Ni, Nf), dtype=np.longdouble)
+    for m, n in itertools.product(range(Ni), range(Nf)):
+        ovl[m, n] = [MASK](dQ, omega_i, omega_f, m, n)
+
+    e, vibronic_matrix_elements = [MASK](
+        omega_i=omega_i, omega_f=omega_f, m_init=0, Nf=Nf, dQ=dQ, ovl=ovl
+    )
+    ```
+    to calculate the vibronic matrix elements. Replace [MASK] with pymatgen functions to complete the code.
+
+All content is executed within the function, and the function does not require any input to output the result. The format of the function should follow these guidelines:
+- Write a Python function that:
+    - Generates the necessary data using the provided Pymatgen functions.
+    - Calculates all the properties mentioned above using Pymatgen, as well as basic Python methods or functions.
+    - Handles errors during property calculations such that if any property calculation fails, the corresponding property value is set to None, while other properties are still calculated and included in the output.
+    - Returns a dictionary where the property name is the key, and the calculated result is the value.
+
+- Ensure your function includes:
+    - Necessary imports (e.g., `from pymatgen.analysis.defects.recombination import analytic_overlap_NM, get_mQn`).
+    - Proper data generation code.
+    - Output in the form of a dictionary as specified above.
+    - A complete docstring with clear input parameters, data types, and a description of the output.
+

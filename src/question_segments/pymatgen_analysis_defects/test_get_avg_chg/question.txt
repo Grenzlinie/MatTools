@@ -1,0 +1,39 @@
+As a materials scientist, you are utilizing Pymatgen to write functions to calculate material properties. Here is what you need to do:
+- Calculate the following properties:
+    - `average_charge_density`: The average charge density within a spherical region of a crystal structure, calculated using charge density data from a CHGCAR file. The result should be a float value.
+
+If you need to read files or generate data, please refer to the following instructions:
+- Read or Generate Data:
+    - Access the structure file path at: `tool_source_code/pymatgen-analysis-defects/tests/test_files/GaN.vasp`.
+    - Use the Pymatgen function:
+    ```python
+    from pymatgen.core import Structure
+    gan_struct = Structure.from_file(file_path / "GaN.vasp")
+    ```
+    - Generate charge density data using:
+    ```python
+    import numpy as np
+    from pymatgen.io.vasp.outputs import Chgcar
+    data = np.ones((48, 48, 48))
+    chgcar = Chgcar(poscar=gan_struct, data={"total": data})
+    ```
+    - Calculate the average charge density using:
+    ```python
+    from pymatgen.analysis.defects.utils import [MASK]
+    fpos = [0.1, 0.1, 0.1]
+    average_charge_density = [MASK](chgcar, fpos) # replace [MASK] with the correct pymatgen function to get the result.
+    ```
+
+All content is executed within the function, and the function does not require any input to output the result. The format of the function should follow these guidelines:
+- Write a Python function that:
+    - Reads the data from the provided file paths or generate data based on the description in the first section.
+    - Calculates all the properties mentioned above using Pymatgen, as well as basic Python methods or functions.
+    - Handles errors during property calculations such that if any property calculation fails, the corresponding property value is set to None, while other properties are still calculated and included in the output.
+    - Returns a dictionary where the property names are keys, and the calculated results are the values.
+
+- Ensure your function includes:
+    - Necessary imports (e.g., `from pymatgen.core import Structure`).
+    - Proper file handling or data generation code.
+    - Output in the form of a dictionary as specified above.
+    - A complete docstring with clear input parameters, data types, and a description of the output.
+

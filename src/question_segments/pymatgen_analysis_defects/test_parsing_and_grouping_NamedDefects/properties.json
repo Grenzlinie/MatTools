@@ -1,0 +1,25 @@
+{
+    "JSON_File_Name": "test_parsing_and_grouping_NamedDefects",
+    "properties": {
+        "element_changes": {
+            "description": "Represents the change in the number of atoms of each element due to the defect.",
+            "format": "dict",
+            "value": "{Element('Mg'): 1, Element('Ga'): -1}"
+        },
+        "defect_string_representation": {
+            "description": "String representation of the NamedDefect, combining the bulk formula and defect name.",
+            "format": "str",
+            "value": "GaN:Mg_Ga"
+        },
+        "defect_inequality": {
+            "description": "Generates a defect in a GaN material where one gallium atom is absent. Then checks if it is not the same as nd0.",
+            "format": "bool",
+            "value": "True"
+        },
+        "defect_equality": {
+            "description": "Uses NamedDefect to generate a NamedDefect object nd2, and nd2 needs to be the same as nd0.",
+            "format": "bool",
+            "value": "True"
+        }
+    }
+}

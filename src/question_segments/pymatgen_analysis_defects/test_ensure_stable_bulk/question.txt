@@ -1,0 +1,27 @@
+As a materials scientist, you are utilizing Pymatgen to write functions to calculate material properties. Here is what you need to do:
+- Calculate the following properties:
+    - `GaN_stability_in_phase_diagram`: Checks if the compound GaN is included in the stable entries of a phase diagram after ensuring stability. The format is a boolean.
+
+If you need to read files or generate data, please refer to the following instructions:
+- Read or Generate Data:
+    - Access the stable entries data path at: `tool_source_code/pymatgen-analysis-defects/tests/test_files/stable_entries_Mg_Ga_N.json`.
+    - Use the Pymatgen function ```python\nfrom monty.serialization import loadfn\nfrom pymatgen.analysis.phase_diagram import PhaseDiagram\nentries = loadfn(file_path / "stable_entries_Mg_Ga_N.json")\n``` to read the stable entries data.
+    - Generate a phase diagram using the Pymatgen function: ```python\npd = PhaseDiagram(entries)\n```.
+    - Create a composition for GaN using Pymatgen: ```python\nfrom pymatgen.analysis.defects.thermo import Composition\nbulk_comp = Composition("GaN")\n```.
+    - Create a computed entry for GaN using Pymatgen: ```python\nfrom pymatgen.analysis.defects.thermo import ComputedEntry\nfake_bulk_ent = ComputedEntry(bulk_comp, energy=pd.get_hull_energy(bulk_comp) + 2)\n```.
+    - Ensure GaN stability in the phase diagram using Pymatgen: ```python\nfrom pymatgen.analysis.defects.thermo import ensure_stable_bulk\npd2 = ensure_stable_bulk(pd, fake_bulk_ent)\n```.
+    - Check if GaN is in the stable entries: ```python\n"GaN" in [e.composition.reduced_formula for [MASK] in [MASK]]\n```. (Replace [MASK] with the correct code to obtain the correct answer and return.)
+
+All content is executed within the function, and the function does not require any input to output the result. The format of the function should follow these guidelines:
+- Write a Python function that:
+    - Reads the data from the provided file paths or generate data based on the description in the first section.
+    - Calculates all the properties mentioned above using Pymatgen, as well as basic Python methods or functions.
+    - Handles errors during property calculations such that if any property calculation fails, the corresponding property value is set to None, while other properties are still calculated and included in the output.
+    - Returns a dictionary where the property names are keys, and the calculated results are the values.
+
+- Ensure your function includes:
+    - Necessary imports (e.g., `from pymatgen.analysis.phase_diagram import PhaseDiagram`).
+    - Proper file handling or data generation code.
+    - Output in the form of a dictionary as specified above.
+    - A complete docstring with clear input parameters, data types, and a description of the output.
+

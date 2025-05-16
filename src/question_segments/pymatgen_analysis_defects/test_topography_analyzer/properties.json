@@ -1,0 +1,15 @@
+{
+    "JSON_File_Name": "test_topography_analyzer",
+    "properties": {
+        "dummy_sites_count": {
+            "description": "The number of dummy sites with species X in the structure after topography analysis.",
+            "format": "int",
+            "value": 100
+        },
+        "value_error_check": {
+            "description": "Ensures that a ValueError is raised when the TopographyAnalyzer is initialized with conflicting species lists.",
+            "format": "bool",
+            "value": "True"
+        }
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "JSON_File_Name": "test_boltzmann",
+    "properties": {
+        "Boltzmann_Filling_Distribution": {
+            "description": "The Boltzmann filling distribution describes the probability of occupancy of phonon states at a given temperature, following the Boltzmann distribution.",
+            "format": "np.allclose (list of float values for approximate comparison)",
+            "value": "[0.9791034813819097, 0.020459854127734073, 0.00042753972270360594, 8.934091775449048e-06, 1.8669141512139823e-07, 3.901200631921917e-09]"
+        }
+    }
+}

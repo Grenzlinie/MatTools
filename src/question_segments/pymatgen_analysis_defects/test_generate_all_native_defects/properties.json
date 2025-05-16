@@ -1,0 +1,15 @@
+{
+    "JSON_File_Name": "test_generate_all_native_defects",
+    "properties": {
+        "number_of_defects_with_chgcar": {
+            "description": "The total number of native defects generated when using a CHGCAR file as input.",
+            "format": "int",
+            "value": 14
+        },
+        "number_of_defects_with_structure": {
+            "description": "The total number of native defects generated when using a structure object as input.",
+            "format": "int",
+            "value": 10
+        }
+    }
+}

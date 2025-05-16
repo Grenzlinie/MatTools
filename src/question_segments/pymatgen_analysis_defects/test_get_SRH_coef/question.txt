@@ -1,0 +1,34 @@
+As a materials scientist, you are utilizing Pymatgen to write functions to calculate material properties. Here is what you need to do:
+- Calculate the following properties:
+    - `SRH_Coefficient`: The Shockley-Read-Hall (SRH) recombination coefficient, which quantifies the rate of carrier recombination via defect states in a semiconductor. The format should be a list of float values.
+
+If you need to read files or generate data, please refer to the following instructions:
+- Read or Generate Data:
+    - Use the Pymatgen function 
+    ```python
+    from pymatgen.analysis.defects.recombination import [MASK]
+    SRH_Coefficient = [MASK](
+        T=[100, 200, 300],
+        dQ=1.0,
+        dE=1.0,
+        omega_i=0.2,
+        omega_f=0.2,
+        elph_me=1,
+        volume=1,
+        g=1,
+    )
+    ``` to calculate the SRH coefficient. Replace [MASK] with correct pymatgen function to get the result.
+
+All content is executed within the function, and the function does not require any input to output the result. The format of the function should follow these guidelines:
+- Write a Python function that:
+    - Reads the data from the provided file paths or generate data based on the description in the first section.
+    - Calculates all the properties mentioned above using Pymatgen, as well as basic Python methods or functions.
+    - Handles errors during property calculations such that if any property calculation fails, the corresponding property value is set to None, while other properties are still calculated and included in the output.
+    - Returns a dictionary where the property names are keys, and the calculated results are the values.
+
+- Ensure your function includes:
+    - Necessary imports (e.g., `from pymatgen.core import Structure`).
+    - Proper file handling or data generation code.
+    - Output in the form of a dictionary as specified above.
+    - A complete docstring with clear input parameters, data types, and a description of the output.
+

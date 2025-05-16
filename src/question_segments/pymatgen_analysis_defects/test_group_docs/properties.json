@@ -1,0 +1,20 @@
+{
+    "JSON_File_Name": "test_group_docs",
+    "properties": {
+        "defect_grouping_without_key_function": {
+            "description": "The grouping of defects based on their structure without using a key function, ensuring that defects at inequivalent sites are grouped separately.",
+            "format": "str",
+            "value": "N_i|N_i|v_Ga,v_Ga|v_N,v_N"
+        },
+        "defect_grouping_with_key_function": {
+            "description": "The grouping of defects based on both their structure and name using a key function, ensuring that defects are grouped correctly by both criteria.",
+            "format": "str",
+            "value": "N_i|N_i,N_i|v_Ga,v_Ga|v_N,v_N"
+        },
+        "group_names_with_key_function": {
+            "description": "The names of groups formed when defects are grouped by both structure and name using a key function.",
+            "format": "str",
+            "value": "N_i:0|N_i:1|v_Ga|v_N"
+        }
+    }
+}

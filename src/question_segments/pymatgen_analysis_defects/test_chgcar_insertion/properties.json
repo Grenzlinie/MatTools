@@ -1,0 +1,15 @@
+{
+    "JSON_File_Name": "test_chgcar_insertion",
+    "properties": {
+        "average_charge": {
+            "description": "The average charge at specific insertion sites within the material structure.",
+            "format": "np.allclose",
+            "value": "[0.03692438178614583, 0.10068764899215804]"
+        },
+        "insertion_site_positions": {
+            "description": "Fractional coordinates of the insertion sites within the crystal lattice.",
+            "format": "np.allclose",
+            "value": "[[[0.0, 0.0, 0.0], [0.0, 0.0, 0.5], [0.0, 0.5, 0.0], [0.5, 0.0, 0.0]], [[0.375, 0.375, 0.375], [0.625, 0.625, 0.625]]]"
+        }
+    }
+}

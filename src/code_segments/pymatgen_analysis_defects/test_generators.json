@@ -1,0 +1,20 @@
+{
+    "uuid": "d4a7924c-d6be-403b-ac43-db08dc1165b3",
+    "filename": "/Users/siyuliu/Desktop/MacBot/src/tool_source_code/pymatgen-analysis-defects/tests/test_generators.py",
+    "imports": [
+        "import pytest",
+        "from pymatgen.analysis.defects.core import Interstitial, Substitution, Vacancy",
+        "from pymatgen.analysis.defects.generators import (\n    AntiSiteGenerator,\n    ChargeInterstitialGenerator,\n    InterstitialGenerator,\n    SubstitutionGenerator,\n    VacancyGenerator,\n    VoronoiInterstitialGenerator,\n    generate_all_native_defects,\n)"
+    ],
+    "classes": [],
+    "global functions": [
+        "def test_vacancy_generators(gan_struct) -> None:\n    vacancy_generator = VacancyGenerator().get_defects(gan_struct)\n    for defect in vacancy_generator:\n        assert isinstance(defect, Vacancy)\n\n    vacancy_generator = VacancyGenerator().get_defects(gan_struct, [\"Ga\"])\n    cnt = 0\n    for defect in vacancy_generator:\n        assert isinstance(defect, Vacancy)\n        cnt += 1\n    assert cnt == 1\n\n    with pytest.raises(ValueError):\n        vacancy_generator = list(\n            VacancyGenerator().get_defects(gan_struct, rm_species=[\"Xe\"])\n        )",
+        "def test_substitution_generators(gan_struct) -> None:\n    sub_generator = SubstitutionGenerator().get_defects(\n        gan_struct, {\"Ga\": [\"Mg\", \"Ca\"]}\n    )\n    replaced_atoms = set()\n    for defect in sub_generator:\n        assert isinstance(defect, Substitution)\n        replaced_atoms.add(defect.site.specie.symbol)\n    assert replaced_atoms == {\"Mg\", \"Ca\"}\n\n    sub_generator = SubstitutionGenerator().get_defects(gan_struct, {\"Ga\": \"Mg\"})\n    replaced_atoms = set()\n    for defect in sub_generator:\n        assert isinstance(defect, Substitution)\n        replaced_atoms.add(defect.site.specie.symbol)\n    assert replaced_atoms == {\n        \"Mg\",\n    }",
+        "def test_antisite_generator(gan_struct) -> None:\n    anti_gen = AntiSiteGenerator().get_defects(gan_struct)\n    def_names = [defect.name for defect in anti_gen]\n    assert sorted(def_names) == [\"Ga_N\", \"N_Ga\"]",
+        "def test_interstitial_generator(gan_struct) -> None:\n    gen = InterstitialGenerator().get_defects(\n        gan_struct, insertions={\"Mg\": [[0, 0, 0]]}\n    )\n    l_gen = list(gen)\n    assert len(l_gen) == 1\n    assert str(l_gen[0]) == \"Mg intersitial site at [0.00,0.00,0.00]\"\n\n    bad_site = [0.667, 0.333, 0.875]\n    gen = InterstitialGenerator().get_defects(\n        gan_struct, insertions={\"Mg\": [[0, 0, 0], bad_site]}\n    )\n    l_gen = list(gen)\n    assert len(l_gen) == 1",
+        "def test_charge_interstitial_generator(chgcar_fe3o4) -> None:\n    gen = ChargeInterstitialGenerator().get_defects(chgcar_fe3o4, {\"Ga\"})\n    cnt = 0\n    for defect in gen:\n        assert isinstance(defect, Interstitial)\n        assert defect.site.specie.symbol == \"Ga\"\n        cnt += 1\n    assert cnt == 2",
+        "def test_voronoi_interstitial_generator(chgcar_fe3o4) -> None:\n    gen = VoronoiInterstitialGenerator().get_defects(chgcar_fe3o4.structure, {\"Li\"})\n    cnt = 0\n    for defect in gen:\n        assert isinstance(defect, Interstitial)\n        assert defect.site.specie.symbol == \"Li\"\n        cnt += 1\n    assert cnt == 4",
+        "def test_generate_all_native_defects(chgcar_fe3o4) -> None:\n    gen = generate_all_native_defects(chgcar_fe3o4)\n    assert len(list(gen)) == 14\n\n    gen = generate_all_native_defects(chgcar_fe3o4.structure)\n    assert len(list(gen)) == 10"
+    ],
+    "global variables": []
+}

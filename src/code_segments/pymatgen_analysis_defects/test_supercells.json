@@ -1,0 +1,18 @@
+{
+    "uuid": "8b9ed8fa-f012-4d71-88ce-a340d518b6a0",
+    "filename": "/Users/siyuliu/Desktop/MacBot/src/tool_source_code/pymatgen-analysis-defects/tests/test_supercells.py",
+    "imports": [
+        "import numpy as np",
+        "import pytest",
+        "from monty.serialization import loadfn",
+        "from pymatgen.analysis.defects.generators import VacancyGenerator",
+        "from pymatgen.analysis.defects.supercells import (\n    _ase_cubic,\n    get_closest_sc_mat,\n    get_matched_structure_mapping,\n    get_sc_fromstruct,\n)"
+    ],
+    "classes": [],
+    "global functions": [
+        "def test_supercells(gan_struct) -> None:\n    uc = gan_struct.copy()\n    sc_mat = get_sc_fromstruct(uc)\n    sc = uc * sc_mat\n    assert sc_mat.shape == (3, 3)\n\n    sc_mat2, _ = get_matched_structure_mapping(uc, sc)\n    assert sc_mat2.shape == (3, 3)\n    sc2 = uc * sc_mat2\n    np.testing.assert_allclose(\n        sc.lattice.abc, sc2.lattice.abc\n    )  # the sc_mat can be reconstructed from the sc",
+        "def test_ase_supercells(gan_struct) -> None:\n    sc_mat = _ase_cubic(gan_struct, min_atoms=4, max_atoms=8, min_length=1.0)\n    sc = gan_struct * sc_mat\n    assert 4 <= sc.num_sites <= 8\n\n    # check raise\n    with pytest.raises(RuntimeError):\n        _ase_cubic(gan_struct, min_atoms=4, max_atoms=8, min_length=10)",
+        "def test_closest_sc_mat(test_dir) -> None:\n    si_o_structs = loadfn(test_dir / \"Si-O_structs.json\")\n    ref_sc_mat = [[2, 1, 2], [2, 0, 3], [2, 1, 1]]\n\n    vg = VacancyGenerator()\n\n    def get_vac(s, sc_mat):\n        vac = next(vg.generate(s, rm_species=[\"O\"]))\n        return vac.get_supercell_structure(sc_mat=sc_mat)\n\n    def check_uc(uc_struct, sc_mat) -> None:\n        vac_sc = get_vac(uc_struct, sc_mat)\n        sorted_results = get_closest_sc_mat(uc_struct, vac_sc, debug=True)\n        min_dist = sorted_results[0][0]\n        close_mats = [r[2] for r in sorted_results if r[0] < min_dist * 1.1]\n        is_matched = [np.allclose(ref_sc_mat, x) for x in close_mats]\n        assert any(is_matched)\n\n    for s in si_o_structs:\n        check_uc(s, ref_sc_mat)\n\n    uc_struct = si_o_structs[0]\n    vac_struct = get_vac(uc_struct, ref_sc_mat)\n    res = get_closest_sc_mat(uc_struct=uc_struct, sc_struct=vac_struct, debug=False)\n    assert np.allclose(res, ref_sc_mat)"
+    ],
+    "global variables": []
+}
