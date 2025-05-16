@@ -93,7 +93,14 @@ Open `src/construct_doc.ipynb`, run all blocks.
 
 Or click [Here](https://figshare.com/articles/dataset/Vectore_store_and_lightrag/29080493) to download the vector store and unzip the `vector_store` folder to `src` folder.
 
-For docker sandbox, run `docker build -t mat-tool-ben .` at root directory to create docker image. When testing, the `result_analysis.py` will automatically generate container for each question.
+**For configuring docker sandbox used for verification generated code** 
+
+Option1: `docker pull grenzlinie/mat-tools:latest`.
+
+Option2: run `docker build -t mat-tool-ben .` at root directory to create docker image. When testing. 
+
+The `result_analysis.py` will automatically generate container for each question.
+
 
 1. Test single LLM
 ```bash
@@ -172,3 +179,15 @@ Run all blocks in `src/question_generation/build_qa_test.ipynb`.
 
 ## 🚀 **About MatToolBen**  
 MatTools provides a systematic way to evaluate the ability of LLMs to handle tasks related to materials science tools. It includes question generation, test automation, and an analysis framework, ensuring robust assessment and consistent results.
+
+## Citation
+```bibtex
+@misc{mattools2025,
+  author       = {Siyu Liu, Jiamin Xu, Beilin Ye, Bo Hu, David J. Srolovitz, Tongqi Wen},
+  title        = {Mattools: Benchmarking Large Language Models for Materials Science Tools},
+  year         = 2025,
+  publisher    = {GitHub},
+  howpublished = {\url{https://huggingface.co/datasets/SiyuLiu/MatTools/}},
+  note         = {Accessed: 2025-05-16}
+}
+```
