@@ -10,6 +10,16 @@
 - pymatgen_code_doc benchmark: `qa_benchmark/generated_qa/generation_results_doc.json`, which consists of 34,604 QA pairs.
 - real-world tool-usage benchmark: `src/question_segments`, which consists of 49 questions (138 tasks). One subfolder means a question with problem statement, property list and verification code.
 
+## Examples of data
+- QA example
+<p align="center">
+<img src="assets/qa.jpg" alt="QA benchmark">
+</p>
+- Real-world tool-usage example
+<p align="center">
+<img src="assets/tool-usage.png" alt="Tool-usage benchmark">
+</p>
+
 ## Leaderboard
 - QA benchmark
 <p align="center">
