@@ -2,6 +2,26 @@
 **A Benchmark for Testing Materials Tool Usage Abilities of Large Language Models (LLMs)**  
 
 <p align="center">
+[Arxiv]
+| 
+<a href="https://github.com/Grenzlinie/MatTools" target="_blank">[Code]</a>
+| 
+<a href="https://www.kaggle.com/datasets/calvinlyu/mattools/" target="_blank">[Dataset]</a>
+</p>
+
+## Table of Contents
+- [Datasheet](#datasheet)
+- [Examples of data](#examples-of-data)
+- [Leaderboard](#leaderboard)
+- [How to test](#how-to-test)
+  - [Environment configuration](#environment-configuration)
+  - [QA benchmark](#qa-benchmark)
+  - [Real-world tool-usage benchmark](#real-world-tool-usage-benchmark)
+- [How to reproduce](#how-to-reproduce)
+- [About MatTools](#about-mattools)
+- [Citation](#citation)
+
+<p align="center">
 <img src="assets/MatTools.jpg" alt="QA benchmark leaderboard">
 </p>
 
@@ -187,7 +207,7 @@ Run all blocks in `src/question_generation/build_qa_test.ipynb`.
 
 (Note: The number of generated triplets may be larger than what we report in our benchmark, as we conducted a manual review process to remove low-quality triplets.)
 
-## 🚀 **About MatToolBen**  
+<h2 id="about-mattools">🚀 <strong>About MatTools</strong></h2>
 MatTools provides a systematic way to evaluate the ability of LLMs to handle tasks related to materials science tools. It includes question generation, test automation, and an analysis framework, ensuring robust assessment and consistent results.
 
 ## Citation
