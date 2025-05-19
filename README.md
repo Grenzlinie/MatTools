@@ -2,7 +2,7 @@
 **A Benchmark for Testing Materials Tool Usage Abilities of Large Language Models (LLMs)**  
 
 <p align="center">
-[Arxiv]
+<a href="https://arxiv.org/abs/2505.10852" target="_blank">[Arxiv]</a>
 | 
 <a href="https://github.com/Grenzlinie/MatTools" target="_blank">[Code]</a>
 | 
@@ -212,12 +212,13 @@ MatTools provides a systematic way to evaluate the ability of LLMs to handle tas
 
 ## Citation
 ```bibtex
-@misc{mattools2025,
-  author       = {Siyu Liu, Jiamin Xu, Beilin Ye, Bo Hu, David J. Srolovitz, Tongqi Wen},
-  title        = {Mattools: Benchmarking Large Language Models for Materials Science Tools},
-  year         = 2025,
-  publisher    = {GitHub},
-  howpublished = {\url{https://huggingface.co/datasets/SiyuLiu/MatTools/}},
-  note         = {Accessed: 2025-05-16}
+@misc{MatTools,
+      title={MatTools: Benchmarking Large Language Models for Materials Science Tools}, 
+      author={Siyu Liu and Jiamin Xu and Beilin Ye and Bo Hu and David J. Srolovitz and Tongqi Wen},
+      year={2025},
+      eprint={2505.10852},
+      archivePrefix={arXiv},
+      primaryClass={cond-mat.mtrl-sci},
+      url={https://arxiv.org/abs/2505.10852}, 
 }
 ```
