@@ -2,3 +2,13 @@
 src/tool_source_code/pymatgen/tests/files/**/* linguist-vendored
 src/tool_source_code/pymatgen/docs/**/* linguist-generated
 src/tool_source_code/pymatgen/dev_scripts/**/* linguist-vendored
+qa_benchmark/test_results/**/* linguist-vendored
+assets/**/* linguist-vendored
+qa_benchmark/generated_qa/**/* linguist-vendored
+src/built_python_parser/**/* linguist-vendored
+src/code_segments/**/* linguist-vendored
+src/defects_doc/**/* linguist-vendored
+src/lightrag/**/* linguist-vendored
+src/**/*.json linguist-vendored
+src/**/*.txt linguist-vendored
+src/vector_store/**/* linguist-vendored
