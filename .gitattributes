@@ -17,3 +17,7 @@ pymatgen_codebase.txt linguist-vendored
 requirements.txt linguist-vendored
 LICENSE linguist-vendored
 pyproject.toml linguist-vendored
+
+*.roff linguist-vendored
+*.md linguist-documentation
+*.py linguist-language=Python
