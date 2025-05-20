@@ -12,3 +12,8 @@ src/lightrag/**/* linguist-vendored
 src/**/*.json linguist-vendored
 src/**/*.txt linguist-vendored
 src/vector_store/**/* linguist-vendored
+poetry.lock linguist-vendored
+pymatgen_codebase.txt linguist-vendored
+requirements.txt linguist-vendored
+LICENSE linguist-vendored
+pyproject.toml linguist-vendored
